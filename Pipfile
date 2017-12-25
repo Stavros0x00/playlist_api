@@ -17,6 +17,9 @@ flask = "*"
 musicbrainzngs = "*"
 requests = "*"
 sphinx = "*"
+flask-migrate = "*"
+flask-sqlalchemy = "*"
+"psycopg2" = "*"
 
 
 [requires]

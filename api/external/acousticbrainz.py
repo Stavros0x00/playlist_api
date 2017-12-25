@@ -2,8 +2,6 @@ import musicbrainzngs
 import requests
 from time import sleep
 
-# TODO: Endpoints for datasets
-# TODO: Docs and readme
 
 class AcousticBrainz(object):
 
@@ -12,22 +10,19 @@ class AcousticBrainz(object):
         self.sleep_time = 0
 
     def get_mbid(self, artist, track):
-        # TODO: explore the rate limiting quota
         """
-
         :param artist:
         :param track:
-        :param limit:
         :return:
         """
-        # TODO: change email?
-        musicbrainzngs.set_useragent('pyacousticbrainz', '0.1', contact='stavanto@gmail.com')
+        # TODO: Create appropriate user agent when code is public
+        # TODO: Handle rate limit error response
+        musicbrainzngs.set_useragent('playlist_api', '0.1')
         return musicbrainzngs.search_recordings(artist=artist, recording=track)
 
     def get_track_data(self, mbid, level, document_number=0, waiting_for=0.25):
         # TODO: implement the low level for multiple mbids functionality
         """
-
         :param mbid:
         :param level:
         :param document_number:
