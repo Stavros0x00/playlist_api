@@ -1,3 +1,6 @@
+# Pytest configuration file for this directory. Creates acousticbrainz and spotify
+# objects used in the tests
+
 import pytest
 from api.auth import sp
 from api.external import AcousticBrainz

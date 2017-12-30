@@ -1,3 +1,5 @@
+# View functions for every api endpoint
+
 from api import app
 
 

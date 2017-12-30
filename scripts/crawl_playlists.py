@@ -1,3 +1,5 @@
+# Script for crawling featured spotify playlists and also getting chosen playlist.net playlists
+
 from api.auth import sp
 
 # For testing-playing purposes, TODO: remove it later

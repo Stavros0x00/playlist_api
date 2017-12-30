@@ -1,3 +1,5 @@
+# Flask app generation and integration of used extensions
+
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
