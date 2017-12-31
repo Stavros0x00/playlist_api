@@ -159,7 +159,7 @@ def update_tracks_from_playlist(playlist):
             try:
                 track_exists.playlists.append(playlist)
                 db.session.commit()
-            except exc.IntegrityError:
+            except:
                 # TODO: Make a better handling
                 # Handle same songs to the same playlist..
                 print("integrity error..")
