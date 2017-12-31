@@ -5,6 +5,8 @@
 import sys
 sys.path.append('/home/work/Dropbox/eap/diplomatikh/source/playlist_api/')
 
+from sqlalchemy import exc
+
 from api import db, create_app
 from api.auth import sp
 from api.models import Track, Playlist
@@ -128,18 +130,17 @@ def update_tracks_from_playlist(playlist):
     Populates tracks database table from given playlists.
     Also update the relationship between them.
     """
-    # db_playlists = Playlist.query.all()
-    # from pdb import set_trace
-    # set_trace()
-    # Add track
-    # for playlist in db_playlists:
+
     playlist_tracks = get_plalist_tracks(playlist)
     for track in playlist_tracks:
         spotify_id = track['track']['id']
+
         # Here i create a string of the names of the artists
         # TODO: Store different data structure or create another artists table
         artists = ", ".join([artist['name'] for artist in track['track']['artists']])
-
+        if not spotify_id or not track['track']['name'] or not artists:
+            print("-================No spotify id or name or artist==========")
+            continue
         track_exists = Track.query.filter_by(spotify_id=spotify_id).first()
 
         if not track_exists:
@@ -155,11 +156,16 @@ def update_tracks_from_playlist(playlist):
             db.session.commit()
         else:
             # Add relathionship to the association table
-            track_exists.playlists.append(playlist)
-            db.session.commit()
+            try:
+                track_exists.playlists.append(playlist)
+                db.session.commit()
+            except exc.IntegrityError:
+                # TODO: Make a better handling
+                # Handle same songs to the same playlist..
+                print("integrity error..")
+                db.session.rollback()
             print("We have it!")
-            # import pdb
-            # pdb.set_trace()
+
 
         print(spotify_id)
 
@@ -171,9 +177,5 @@ if __name__ == '__main__':
     with app.app_context():
         db.init_app(app)
         update_spotify_playlists()
-        # update_tracks_from_playlist()
-    # playlists = get_featured_playlists()
-    # categories = get_categories()
-    # categories_playlists = get_categories_playlists()
     # from pdb import set_trace
     # set_trace()

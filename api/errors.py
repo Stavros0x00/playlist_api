@@ -28,3 +28,8 @@ def not_found_error(error):
 def internal_error(error):
     db.session.rollback()
     return error_response(500)
+
+
+@app.errorhandler(429)
+def ratelimit_handler(error):
+    return error_response(429, "ratelimit exceeded %s" % error.description)

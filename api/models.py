@@ -18,10 +18,10 @@ class Track(db.Model):
     __searchable__ = ['artist', 'name']
 
     id = db.Column(db.Integer, primary_key=True)
-    spotify_id = db.Column(db.String(100), index=True, unique=True)
+    spotify_id = db.Column(db.String(100), index=True, unique=True, nullable=False)
     musicbrainz_id = db.Column(db.String(100), index=True, unique=True)
-    artist = db.Column(db.String(600), index=True)
-    name = db.Column(db.String(300), index=True)
+    artist = db.Column(db.String(600), index=True, nullable=False)
+    name = db.Column(db.String(300), index=True, nullable=False)
 
     playlists = db.relationship('Playlist', secondary=playlist_to_track,
                                 backref=db.backref('tracks', lazy='dynamic'),
@@ -39,8 +39,8 @@ class Playlist(db.Model):
     __tablename__ = "playlists"
 
     id = db.Column(db.Integer, primary_key=True)
-    spotify_id = db.Column(db.String(100), index=True, unique=True)
-    playlist_user = db.Column(db.String(200), index=True)
+    spotify_id = db.Column(db.String(100), index=True, unique=True, nullable=False)
+    playlist_user = db.Column(db.String(200), index=True, nullable=False)
 
 
     def __repr__(self):

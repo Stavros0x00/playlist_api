@@ -21,6 +21,8 @@ flask-migrate = "*"
 flask-sqlalchemy = "*"
 "psycopg2" = "*"
 elasticsearch = "*"
+redis = "*"
+flask-limiter = "*"
 
 
 [requires]
