@@ -14,11 +14,14 @@ class Track(db.Model):
     Creates the track python object representing a track from the database.
     """
     __tablename__ = "tracks"
+
+    __searchable__ = ['artist', 'name']
+
     id = db.Column(db.Integer, primary_key=True)
     spotify_id = db.Column(db.String(100), index=True, unique=True)
     musicbrainz_id = db.Column(db.String(100), index=True, unique=True)
-    artist = db.Column(db.String(100), index=True)
-    name = db.Column(db.String(100), index=True)
+    artist = db.Column(db.String(600), index=True)
+    name = db.Column(db.String(300), index=True)
 
     playlists = db.relationship('Playlist', secondary=playlist_to_track,
                                 backref=db.backref('tracks', lazy='dynamic'),
@@ -34,8 +37,10 @@ class Playlist(db.Model):
     Creates the playlist python object representing a playlist from the database.
     """
     __tablename__ = "playlists"
+
     id = db.Column(db.Integer, primary_key=True)
     spotify_id = db.Column(db.String(100), index=True, unique=True)
+    playlist_user = db.Column(db.String(200), index=True)
 
 
     def __repr__(self):
