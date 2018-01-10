@@ -13,16 +13,17 @@ name = "pypi"
 
 pytest = "*"
 spotipy = "*"
-flask = "*"
+Flask = "*"
 musicbrainzngs = "*"
 requests = "*"
-sphinx = "*"
-flask-migrate = "*"
-flask-sqlalchemy = "*"
+Sphinx = "*"
+Flask-Migrate = "*"
+Flask-SQLAlchemy = "*"
 "psycopg2" = "*"
 elasticsearch = "*"
 redis = "*"
-flask-limiter = "*"
+Flask-Limiter = "*"
+Flask-APScheduler = "*"
 
 
 [requires]
