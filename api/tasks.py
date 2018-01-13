@@ -1,1 +1,3 @@
 # Background asynchronous tasks
+from scripts.crawl_playlists import update_spotify_playlists
+from scripts.sync_db_elastic import sync_database_elastic

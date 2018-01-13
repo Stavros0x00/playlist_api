@@ -12,6 +12,27 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ELASTICSEARCH_URI = os.environ.get('ELASTICSEARCH_URI')
 
+    JOBS = [
+        {
+            'id': 'job1',
+            'name': 'spotify_playlists',
+            'func': 'api.tasks:update_spotify_playlists',
+            'args': (),
+            'trigger': 'interval',
+            'hours': 24
+        },
+        {
+            'id': 'job2',
+            'name': 'sync_database_elastic',
+            'func': 'api.tasks:sync_database_elastic',
+            'args': (),
+            'trigger': 'interval',
+            'hours': 25
+        }
+    ]
+
+    SCHEDULER_API_ENABLED = True
+
 
 class ProductionConfig(Config):
     DEBUG = False

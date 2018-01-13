@@ -2,6 +2,7 @@
 
 from elasticsearch import Elasticsearch
 from flask import Flask
+from flask_apscheduler import APScheduler
 from flask_limiter import Limiter, HEADERS
 from flask_limiter.util import get_remote_address
 from flask_sqlalchemy import SQLAlchemy
@@ -13,6 +14,7 @@ from config import Config
 db = SQLAlchemy()
 migrate = Migrate()
 limiter = Limiter(key_func=get_remote_address)
+scheduler = APScheduler()
 
 
 def create_app(config_class=Config):
@@ -29,6 +31,8 @@ def create_app(config_class=Config):
 
 
 app = create_app()
+scheduler.init_app(app)
+scheduler.start()
 
 
 from api import routes, models

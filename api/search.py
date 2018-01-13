@@ -24,7 +24,8 @@ def query_index(index, query, page, per_page):
         return [], 0  # This returned tuple needed for compatibility reasons. See below
     search = current_app.elasticsearch.search(
         index=index, doc_type=index,
-        body={'query': {'multi_match': {'query': query, 'fields': ['*']}},
+        # Doing a fuzzy query that search to all searchable fields.
+        body={'query': {'multi_match': {'query': query, 'fields': ['*'], "fuzziness": "AUTO"}},
               'from': (page - 1) * per_page, 'size': per_page})
     ids = [int(hit['_id']) for hit in search['hits']['hits']]
-    return ids, search['hits']['total']  # Return ids with the total of hist from elastic
+    return ids, search['hits']['total']  # Return ids with the total of hits from elastic

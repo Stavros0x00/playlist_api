@@ -5,9 +5,8 @@
 import sys
 sys.path.append('/home/work/Dropbox/eap/diplomatikh/source/playlist_api/')
 
-from sqlalchemy import exc
 
-from api import db, create_app
+from api import db, create_app, app
 from api.auth import sp
 from api.models import Track, Playlist
 
@@ -85,26 +84,27 @@ def update_spotify_playlists():
     """
     Gets spotify playlists and updates the database
     """
-    featured_playlists = get_featured_playlists()
-    categories_playlists = get_categories_playlists()
+    with app.app_context():
+        featured_playlists = get_featured_playlists()
+        categories_playlists = get_categories_playlists()
 
-    playlists = featured_playlists + categories_playlists
-    for playlist in playlists:
-        spotify_id = playlist['id']
-        playlist_user = playlist['owner']['id']
-        playlist_exists = Playlist.query.filter_by(spotify_id=spotify_id).first()
+        playlists = featured_playlists + categories_playlists
+        for playlist in playlists:
+            spotify_id = playlist['id']
+            playlist_user = playlist['owner']['id']
+            playlist_exists = Playlist.query.filter_by(spotify_id=spotify_id).first()
 
-        if not playlist_exists:
-            p = Playlist()
-            p.spotify_id = spotify_id
-            p.playlist_user = playlist_user
-            db.session.add(p)
-            db.session.commit()
+            if not playlist_exists:
+                p = Playlist()
+                p.spotify_id = spotify_id
+                p.playlist_user = playlist_user
+                db.session.add(p)
+                db.session.commit()
 
-            update_tracks_from_playlist(p)
-        else:
-            print("We have it!")
-        print(spotify_id)
+                update_tracks_from_playlist(p)
+            else:
+                print("We have it!")
+            print(spotify_id)
 
 
 def get_plalist_tracks(playlist):

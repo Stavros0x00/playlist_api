@@ -5,7 +5,8 @@
 import sys
 sys.path.append('/home/work/Dropbox/eap/diplomatikh/source/playlist_api/')
 
-from api import create_app
+
+from api import create_app, app
 from api.models import Track
 
 
@@ -14,7 +15,8 @@ def sync_database_elastic():
     Syncs data from database to elasticsearch for having updated data
     when searching for tracks
     """
-    Track.reindex()
+    with app.app_context():
+        Track.reindex()
 
 
 if __name__ == '__main__':
