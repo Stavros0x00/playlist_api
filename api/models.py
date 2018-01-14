@@ -25,8 +25,7 @@ class SearchableMixin(object):
     def search(cls, expression, page=1, per_page=100):
         """
         The main elastic search method. We have to have the same names for index in elastic and table in db.
-        I wont pagination for now. For now use these default pagination numbers.
-        TODO: Handle better the pagination defaults
+        I wont do pagination for now. For now use these default pagination numbers.
         """
         ids, total = query_index(cls.__tablename__, expression, page, per_page)
         if total == 0:

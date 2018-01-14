@@ -1,16 +1,11 @@
 #!/usr/bin/env python
 # Script for crawling featured spotify playlists and also getting chosen playlist.net playlists
 
-# To be removed?
-import sys
-sys.path.append('/home/work/Dropbox/eap/diplomatikh/source/playlist_api/')
-
 
 from api import db, create_app, app
 from api.auth import sp
 from api.models import Track, Playlist
 
-# TODO: make it more modular. You do the same thing again and again
 # TODO: see possible performance issues. Many O(n^2) operations here
 
 
@@ -136,7 +131,6 @@ def update_tracks_from_playlist(playlist):
         spotify_id = track['track']['id']
 
         # Here i create a string of the names of the artists
-        # TODO: Store different data structure or create another artists table
         artists = ", ".join([artist['name'] for artist in track['track']['artists']])
         if not spotify_id or not track['track']['name'] or not artists:
             print("-================No spotify id or name or artist==========")
@@ -160,7 +154,6 @@ def update_tracks_from_playlist(playlist):
                 track_exists.playlists.append(playlist)
                 db.session.commit()
             except:
-                # TODO: Make a better handling
                 # Handle same songs to the same playlist..
                 print("integrity error..")
                 db.session.rollback()
@@ -168,14 +161,3 @@ def update_tracks_from_playlist(playlist):
 
 
         print(spotify_id)
-
-
-# To be removed
-if __name__ == '__main__':
-    # Initialize app needed for using the models
-    app = create_app()
-    with app.app_context():
-        db.init_app(app)
-        update_spotify_playlists()
-    # from pdb import set_trace
-    # set_trace()

@@ -32,5 +32,4 @@ ExpectedForMbid = namedtuple('ExpectedForMbid', ['type', 'mbid'])
 def test_get_mbid(acoustic_brainz_object, artist, track, expected):
     recordings = acoustic_brainz_object.get_mbid(artist, track,)
     assert isinstance(recordings, expected.type)
-    # TODO: Explore and understand why the result is different from the expexted id some times
     assert recordings['recording-list'][0]['id'] == expected.mbid

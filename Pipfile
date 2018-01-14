@@ -25,6 +25,7 @@ redis = "*"
 flask-limiter = "*"
 flask-apscheduler = "*"
 sphinxcontrib-httpdomain = "*"
+pytest-flask = "*"
 
 
 [requires]

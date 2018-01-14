@@ -24,7 +24,7 @@ def spotify_object():
 
 
 @pytest.fixture(scope='module')
-def api_object():
+def app():
     """
     Setups the Flask app-api object.
     """

@@ -1,7 +1,7 @@
 # Flask app generation and integration of used extensions
 
 from elasticsearch import Elasticsearch
-from flask import Flask
+from flask import Flask, Blueprint
 from flask_apscheduler import APScheduler
 from flask_limiter import Limiter, HEADERS
 from flask_limiter.util import get_remote_address
@@ -15,11 +15,12 @@ db = SQLAlchemy()
 migrate = Migrate()
 limiter = Limiter(key_func=get_remote_address)
 scheduler = APScheduler()
-
+bp = Blueprint('api', __name__)
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
+
 
     db.init_app(app)
     migrate.init_app(app, db)

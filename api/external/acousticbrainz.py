@@ -16,7 +16,6 @@ class AcousticBrainz(object):
         """
         Get MusicBrainz ID from track
         """
-        # TODO: Create appropriate user agent when code is public
         # TODO: Handle rate limit error response
         musicbrainzngs.set_useragent('playlist_api', '0.1')
         return musicbrainzngs.search_recordings(artist=artist, recording=track)

@@ -3,7 +3,7 @@
 from flask import jsonify
 from werkzeug.http import HTTP_STATUS_CODES
 
-from api import app, db
+from api import bp, db
 
 
 def error_response(status_code, message=None):
@@ -19,17 +19,17 @@ def bad_request(message):
     return error_response(400, message)
 
 
-@app.errorhandler(404)
+@bp.errorhandler(404)
 def not_found_error(error):
     return error_response(404)
 
 
-@app.errorhandler(500)
+@bp.errorhandler(500)
 def internal_error(error):
     db.session.rollback()
     return error_response(500)
 
 
-@app.errorhandler(429)
+@bp.errorhandler(429)
 def ratelimit_handler(error):
     return error_response(429, "ratelimit exceeded %s" % error.description)
