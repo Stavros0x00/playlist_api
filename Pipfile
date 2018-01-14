@@ -26,6 +26,7 @@ flask-limiter = "*"
 flask-apscheduler = "*"
 sphinxcontrib-httpdomain = "*"
 pytest-flask = "*"
+raven = {extras = ["flask"]}
 
 
 [requires]

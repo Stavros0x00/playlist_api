@@ -2,7 +2,7 @@
 # Script for sync between elastic and database
 
 
-from api import create_app, app
+from run import app
 from api.models import Track
 
 

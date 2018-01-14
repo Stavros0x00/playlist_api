@@ -2,9 +2,11 @@
 # Script for crawling featured spotify playlists and also getting chosen playlist.net playlists
 
 
-from api import db, create_app, app
+from api import db, create_app
 from api.auth import sp
 from api.models import Track, Playlist
+from run import app
+
 
 # TODO: see possible performance issues. Many O(n^2) operations here
 
