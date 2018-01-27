@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "622dac77e69b52a4292a99f73b5c60c35f5c7322ed58c1b8c0b08088c67ce819"
+            "sha256": "687a42391b51e3d2de204530f4e4f04d3f3624444ba89ff04f83deb24dcfdcbd"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -38,16 +38,16 @@
         },
         "alembic": {
             "hashes": [
-                "sha256:042851ebe9efa07be6dc1395b1793b6c1d8964a39b73a0ce1649e2bcd41ea732"
+                "sha256:46f4849c6dce69f54dd5001b3215b6a983dee6b17512efee10e237fa11f20cfa"
             ],
-            "version": "==0.9.6"
+            "version": "==0.9.7"
         },
         "apscheduler": {
             "hashes": [
-                "sha256:3b305711f874f643572c6c16799bd11b66dd68c729828c740acfeca03278625a",
-                "sha256:1ce44d5132b7951f4614067c88ca34cfee1ff97f6f0892581d79b636d83eab89"
+                "sha256:443d015339ceca347f9ed14a66e9b610f99f19f8ef9048aa1cdabee2560824e1",
+                "sha256:952c8f46a11f32b9d5bfbe3e347dac2cdf0680d8b4799590dc9c3a9865b73b65"
             ],
-            "version": "==3.5.0"
+            "version": "==3.5.1"
         },
         "attrs": {
             "hashes": [
@@ -58,10 +58,10 @@
         },
         "babel": {
             "hashes": [
-                "sha256:f20b2acd44f587988ff185d8949c3e208b4b3d5d20fcab7d91fe481ffa435528",
-                "sha256:6007daf714d0cd5524bbe436e2d42b3c20e68da66289559341e48d2cd6d25811"
+                "sha256:ad209a68d7162c4cff4b29cdebe3dec4cef75492df501b0049a9433c96ce6f80",
+                "sha256:8ce4cb6fdd4393edd323227cba3a077bceb2a6ce5201c902c65e730046f41f14"
             ],
-            "version": "==2.5.1"
+            "version": "==2.5.3"
         },
         "blinker": {
             "hashes": [
@@ -71,10 +71,10 @@
         },
         "certifi": {
             "hashes": [
-                "sha256:244be0d93b71e93fc0a0a479862051414d0e00e16435707e5bf5000f92e04694",
-                "sha256:5ec74291ca1136b40f0379e1128ff80e866597e4e2c1e755739a913bbc3613c0"
+                "sha256:14131608ad2fd56836d33a71ee60fa1c82bc9d2c8d98b7bdbc631fe1b3cd1296",
+                "sha256:edbc3f203427eef571f79a7692bb160a2b0f7ccaa31953e99bd17e307cf63f7d"
             ],
-            "version": "==2017.11.5"
+            "version": "==2018.1.18"
         },
         "chardet": {
             "hashes": [
@@ -314,10 +314,10 @@
         },
         "raven": {
             "hashes": [
-                "sha256:2c9cd4d8c267f57db625305aaa89e7dd852d6864c13c7b84f4d4500df07bebd9",
-                "sha256:b8edbb3335ed6c23cb168ced37fb523c1b91d9f3b0eddb90934249977841a902"
+                "sha256:0adae40e004dfe2181d1f2883aa3d4ca1cf16dbe449ae4b445b011c6eb220a90",
+                "sha256:84da75114739191bdf2388f296ffd6177e83567a7fbaf2701e034ad6026e4f3b"
             ],
-            "version": "==6.4.0"
+            "version": "==6.5.0"
         },
         "redis": {
             "hashes": [
@@ -376,18 +376,18 @@
         },
         "sqlalchemy": {
             "hashes": [
-                "sha256:7dda3e0b1b12215e3bb05368d1abbf7d747112a43738e0a4e6deb466b83fd88e"
+                "sha256:64b4720f0a8e033db0154d3824f5bf677cf2797e11d44743cf0aebd2a0499d9d"
             ],
-            "version": "==1.2.0"
+            "version": "==1.2.2"
         },
         "typing": {
             "hashes": [
-                "sha256:349b1f9c109c84b53ac79ac1d822eaa68fc91d63b321bd9392df15098f746f53",
-                "sha256:63a8255fe7c6269916baa440eb9b6a67139b0b97a01af632e7bd2842e1e02f15",
-                "sha256:d514bd84b284dd3e844f0305ac07511f097e325171f6cc4a20878d11ad771849"
+                "sha256:b2c689d54e1144bbcfd191b0832980a21c2dbcf7b5ff7a66248a60c90e951eb8",
+                "sha256:3a887b021a77b292e151afb75323dea88a7bc1b3dfa92176cff8e44c8b68bddf",
+                "sha256:d400a9344254803a2368533e4533a4200d21eb7b6b729c173bc38201a74db3f2"
             ],
             "markers": "python_version < '3.5'",
-            "version": "==3.6.2"
+            "version": "==3.6.4"
         },
         "tzlocal": {
             "hashes": [
@@ -401,6 +401,12 @@
                 "sha256:cc44da8e1145637334317feebd728bd869a35285b93cbb4cca2577da7e62db4f"
             ],
             "version": "==1.22"
+        },
+        "uwsgi": {
+            "hashes": [
+                "sha256:572ef9696b97595b4f44f6198fe8c06e6f4e6351d930d22e5330b071391272ff"
+            ],
+            "version": "==2.0.15"
         },
         "werkzeug": {
             "hashes": [

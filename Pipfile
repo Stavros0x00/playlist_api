@@ -27,6 +27,7 @@ flask-apscheduler = "*"
 sphinxcontrib-httpdomain = "*"
 pytest-flask = "*"
 raven = {extras = ["flask"]}
+uwsgi = "*"
 
 
 [requires]
