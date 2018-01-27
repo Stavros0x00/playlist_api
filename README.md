@@ -34,14 +34,16 @@
     # Install python 3.6:
     sudo add-apt-repository ppa:jonathonf/python-3.6
     sudo apt-get update
-    sudo apt-get install python3.6
+    sudo apt-get install python3.6, python3.6-dev
 
     #  Install pipenv
     sudo apt-get install python3-pip
     pip3 install pipenv
     cd /home/playlist_api
     pipenv install
-    pipenv install uwsgi
+    # pipenv install uwsgi
+    pipenv shell
+    flask db upgrade
 
 
 
@@ -52,6 +54,8 @@
 
     sudo -i -u postgres
     createdb playlist_api
+    psql
+   alter user postgres password '<YOUR POSTGRES PASS>';
 
 ### Elasticsearch
 

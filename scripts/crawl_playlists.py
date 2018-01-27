@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # Script for crawling featured spotify playlists and also getting chosen playlist.net playlists
 
+# To be removed?
+import sys
+sys.path.append('/home/playlist_api/')
 
 from api import db, create_app
 from api.auth import sp
@@ -163,3 +166,11 @@ def update_tracks_from_playlist(playlist):
 
 
         print(spotify_id)
+
+
+if __name__ == '__main__':
+    # Initialize app needed for using the models
+    app = create_app()
+    with app.app_context():
+        db.init_app(app)
+        update_spotify_playlists()
