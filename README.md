@@ -98,6 +98,7 @@
     python scripts/sync_db_elastic.py
 
     touch playlist_api.sock
+    touch uwsgi.log
     echo '[uwsgi]
         module = run:app
 
@@ -107,14 +108,53 @@
         socket = playlist_api.sock
         chmod-socket = 660
         vacuum = true
+        logto = /home/playlistapi/playlist_api/uwsgi.log
+        for-readline = /home/playlistapi/playlist_api/.env
+          env = %(_)
+        endfor =
 
         die-on-term = true' > playlist_api.ini
 
+    sudo nano /etc/systemd/system/playlist_api.service
+    copy # This needs to have guide for the venv directory
+    [Unit]
+    Description=uWSGI instance to serve myproject
+    After=network.target
 
+    [Service]
+    User=playlistapi
+    Group=www-data
+    WorkingDirectory=/home/playlistapi/playlist_api
+    Environment="PATH=/home/playlistapi/.local/share/virtualenvs/playlist_api-KjQVwPM-/bin"
+    ExecStart=/home/playlistapi/.local/share/virtualenvs/playlist_api-KjQVwPM-/bin/uwsgi --ini playlist_api.ini
 
-### uWSGI and Nginx
+    [Install]
+    WantedBy=multi-user.target
+
+    sudo systemctl start playlist_api
+    sudo systemctl enable playlist_api
+
+    sudo systemctl restart playlist_api
+
+### Nginx
     sudo apt-get update
     sudo apt-get install python3-pip python3-dev nginx
+
+    sudo nano /etc/nginx/sites-available/playlist_api
+
+    server {
+        listen 80;
+        server_name server_domain_or_IP;
+        location / {
+        include uwsgi_params;
+        uwsgi_pass unix:/home/playlistapi/playlist_api/playlist_api.sock;
+    }
+
+    }
+    sudo ln -s /etc/nginx/sites-available/playlist_api /etc/nginx/sites-enabled
+    sudo nginx -t
+    sudo systemctl restart nginx
+    sudo ufw allow 'Nginx Full'
 
 
 
