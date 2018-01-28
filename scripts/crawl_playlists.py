@@ -3,7 +3,7 @@
 
 # To be removed?
 import sys
-sys.path.append('/home/playlist_api/')
+sys.path.append('/home/playlistapi/playlist_api/')
 
 from api import db, create_app
 from api.auth import sp

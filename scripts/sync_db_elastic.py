@@ -3,7 +3,7 @@
 
 # This is needed for running the scripts without a sheduler
 import sys
-sys.path.append('/home/playlist_api/')
+sys.path.append('/home/playlistapi/playlist_api/')
 
 from run import app
 from api import create_app
