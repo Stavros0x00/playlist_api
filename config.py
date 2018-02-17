@@ -18,16 +18,16 @@ class Config(object):
             'name': 'spotify_playlists',
             'func': 'api.tasks:update_spotify_playlists',
             'args': (),
-            'trigger': 'interval',
-            'hours': 24
+            'trigger': 'cron',
+            'hour': '19',
         },
         {
             'id': 'job2',
             'name': 'sync_database_elastic',
             'func': 'api.tasks:sync_database_elastic',
             'args': (),
-            'trigger': 'interval',
-            'hours': 25
+            'trigger': 'cron',
+            'hour': '21'
         }
     ]
 

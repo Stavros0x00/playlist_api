@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # Script for crawling featured spotify playlists and also getting chosen playlist.net playlists
 
+import logging
+logger = logging.getLogger('api')
 # To be removed?
 import sys
 sys.path.append('/home/playlistapi/playlist_api/')
@@ -84,6 +86,7 @@ def update_spotify_playlists():
     """
     Gets spotify playlists and updates the database
     """
+    logger.info('Started updating playlists from spotify')
     with app.app_context():
         featured_playlists = get_featured_playlists()
         categories_playlists = get_categories_playlists()

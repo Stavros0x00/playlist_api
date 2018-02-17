@@ -1,4 +1,6 @@
 # View functions for every api endpoint
+import logging
+logger = logging.getLogger('api')
 
 from flask import jsonify, request
 
@@ -11,6 +13,7 @@ from api.utils import wants_json_response
 @bp.route('/api/v1/search/songs/', methods=['GET'])
 @limiter.limit("5 per second")  # Rate limits are restarting with server restart
 def songs():
+    logger.info('Search endpoint requested from ip %s' % request.remote_addr)
     if not wants_json_response():
         return bad_request("Send json accept header please")
     track_query = request.args.get('q')

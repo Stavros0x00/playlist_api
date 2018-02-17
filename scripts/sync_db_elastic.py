@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # Script for sync between elastic and database
 
+import logging
+logger = logging.getLogger('api')
 # This is needed for running the scripts without a sheduler
 import sys
 sys.path.append('/home/playlistapi/playlist_api/')
@@ -14,6 +16,7 @@ def sync_database_elastic():
     """
     Syncs data from database to elasticsearch
     """
+    logger.info('Started syncing database with elastic')
     with app.app_context():
         Track.reindex()
 
