@@ -114,6 +114,7 @@
         endfor =
 
         die-on-term = true' > playlist_api.ini
+        enable-threads = true
 
     sudo nano /etc/systemd/system/playlist_api.service
     copy # This needs to have guide for the venv directory
