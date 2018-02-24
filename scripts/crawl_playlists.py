@@ -9,7 +9,7 @@ sys.path.append('/home/playlistapi/playlist_api/')
 
 from api import db, create_app
 from api.auth import sp
-from api.models import Track, Playlist
+from api.models import Track, Playlist, PlaylistToTrack
 from run import app
 
 
@@ -110,7 +110,7 @@ def update_spotify_playlists():
             print(spotify_id)
 
 
-def get_plalist_tracks(playlist):
+def get_playlist_tracks(playlist):
     """
     Gets tracks from a spotify playlist
     """
@@ -134,8 +134,8 @@ def update_tracks_from_playlist(playlist):
     Also update the relationship between them.
     """
 
-    playlist_tracks = get_plalist_tracks(playlist)
-    for track in playlist_tracks:
+    playlist_tracks = get_playlist_tracks(playlist)
+    for index, track in enumerate(playlist_tracks):
         spotify_id = track['track']['id']
 
         # Here i create a string of the names of the artists
@@ -145,25 +145,31 @@ def update_tracks_from_playlist(playlist):
             continue
         track_exists = Track.query.filter_by(spotify_id=spotify_id).first()
 
+        playlist_to_track = PlaylistToTrack(order_in_playlist=index)
         if not track_exists:
             t = Track()
             t.spotify_id = spotify_id
             t.name = track['track']['name']
             t.artist = artists
-            db.session.add(t)
-            db.session.commit()
 
             # Add relathionship to the association table
-            t.playlists.append(playlist)
-            db.session.commit()
+            playlist_to_track.track = t
+            with db.session.no_autoflush:
+                playlist.tracks.append(playlist_to_track)
+            db.session.flush()
+
         else:
             # Add relathionship to the association table
             try:
-                track_exists.playlists.append(playlist)
-                db.session.commit()
-            except:
+                playlist_to_track.track = track_exists
+                with db.session.no_autoflush:
+                    playlist.tracks.append(playlist_to_track)
+                db.session.flush()
+                print("=================================")
+            except Exception as ex:
                 # Handle same songs to the same playlist..
-                print("integrity error..")
+                print("integrity error..+++++++++++++++++++++++++++++++")
+                print(ex)
                 db.session.rollback()
             print("We have it!")
 

@@ -6,13 +6,6 @@ from api import db
 from api.search import add_to_index, remove_from_index, query_index
 
 
-# Needed association table for many to many songs and playlists tables relationship
-playlist_to_track = db.Table('playlist_to_track',
-                             db.Column('playlist_id', db.Integer, db.ForeignKey('playlists.id'), primary_key=True),
-                             db.Column('track_id', db.Integer, db.ForeignKey('tracks.id'), primary_key=True)
-                             )
-
-
 class SearchableMixin(object):
     """
     This mixin class is needed for injecting elastic searching
@@ -86,10 +79,7 @@ class Track(db.Model, SearchableMixin):
     artist = db.Column(db.String(600), index=True, nullable=False)
     name = db.Column(db.String(300), index=True, nullable=False)
 
-    playlists = db.relationship('Playlist', secondary=playlist_to_track,
-                                backref=db.backref('tracks', lazy='dynamic'),
-                                lazy='dynamic'
-                                )
+    playlists = db.relationship("PlaylistToTrack", back_populates="track")
 
     def to_dict(self):
         """
@@ -125,9 +115,24 @@ class Playlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     spotify_id = db.Column(db.String(100), index=True, unique=True, nullable=False)
     playlist_user = db.Column(db.String(200), index=True, nullable=False)
-
+    tracks = db.relationship("PlaylistToTrack", back_populates="playlist")
 
     def __repr__(self):
         return '<Playlist {}>'.format(self.spotify_id)
 
 
+class PlaylistToTrack(db.Model):
+    """
+    Creates the playlist to track association object with the corresponding order of the truck inside the playlist.
+    """
+    __tablename__ = "playlist_to_track"
+
+    playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.id'), primary_key=True, autoincrement=False)
+    track_id = db.Column(db.Integer, db.ForeignKey('tracks.id'), primary_key=True, autoincrement=False)
+    order_in_playlist = db.Column(db.Integer)
+
+    track = db.relationship(Track, back_populates="playlists")
+    playlist = db.relationship(Playlist, back_populates="tracks")
+
+    def __repr__(self):
+        return '<PlaylistToTrack {}, {}, {}>'.format(self.playlist_id, self.track_id, self.order_in_playlist)
