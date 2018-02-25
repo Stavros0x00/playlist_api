@@ -34,8 +34,8 @@ def create_app(config_class=Config):
 
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URI']]) if app.config['ELASTICSEARCH_URI'] else None
 
-    #if not app.config.get('DEBUG'):
-    sentry.init_app(app, dsn=os.getenv('SENTRY_KEY'))
+    if not app.config.get('DEBUG'):
+        sentry.init_app(app, dsn=os.getenv('SENTRY_KEY'))
 
     return app
 

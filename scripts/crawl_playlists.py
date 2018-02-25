@@ -108,6 +108,9 @@ def update_spotify_playlists():
             else:
                 print("We have it!")
             print(spotify_id)
+        # Update undirected graph
+        from api.graph import create_undirected_graph
+        create_undirected_graph()
 
 
 def get_playlist_tracks(playlist):

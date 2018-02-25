@@ -109,3 +109,6 @@ out
 gen
 
 make.bat
+
+# Pickled files
+*.gpickle

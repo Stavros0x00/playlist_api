@@ -1,6 +1,7 @@
 # The models of the playlist api. With the help of the sqlalchemy ORM
 
 from flask import url_for
+from sqlalchemy import or_
 
 from api import db
 from api.search import add_to_index, remove_from_index, query_index
@@ -95,6 +96,19 @@ class Track(db.Model, SearchableMixin):
             # }
         }
         return data
+
+    def get_neighbors(self):
+        neighbors = []
+        playlists = self.playlists
+        for playlist in playlists:
+            order_in_playlist = playlist.order_in_playlist
+            neighbors_in_the_playlist = db.session.query(PlaylistToTrack).filter(PlaylistToTrack.playlist_id == playlist.playlist_id,
+                                                                                 or_(PlaylistToTrack.order_in_playlist == order_in_playlist - 1,
+                                                                                     PlaylistToTrack.order_in_playlist == order_in_playlist + 1)).all()
+
+            for neighbor in neighbors_in_the_playlist:
+                neighbors.append(neighbor.track)
+        return neighbors
 
     def __repr__(self):
         return '<Song {} - {} - {}>'.format(self.spotify_id, self.artist, self.name)
