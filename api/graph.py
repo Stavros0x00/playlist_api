@@ -9,6 +9,7 @@ from api.models import Track
 
 
 def create_undirected_graph():
+    # TODO: refactor the whole think...
     try:
         G = nx.read_gpickle("api/pickled_files/undirected_graph.gpickle")
     except FileNotFoundError:

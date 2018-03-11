@@ -111,6 +111,7 @@ def update_spotify_playlists():
         # Update undirected graph
         from api.graph import create_undirected_graph
         create_undirected_graph()
+        db.session.close()
 
 
 def get_playlist_tracks(playlist):
