@@ -87,7 +87,7 @@
 
     * FLASK_APP=run.py
     * SECRET_KEY=
-    * DATABASE_URL=postgresql://postgres:{YOUR POSTGRES PASS}@localhost/playlist_api
+    * DATABASE_URL=postgresql://postgres:{YOUR POSTGRES PASS}@localhost:5432/playlist_api
     * ELASTICSEARCH_URI=http://localhost:9200
     * SENTRY_KEY= (optional)
     * SPOTIPY_CLIENT_ID=
