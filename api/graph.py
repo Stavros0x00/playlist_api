@@ -1,8 +1,9 @@
-import networkx as nx
-
+import math
 # remove it later
 import sys
 sys.path.append('/home/work/Dropbox/eap/diplomatikh/source/playlist_api/')
+
+import networkx as nx
 
 from api import db, create_app
 from api.models import Track
@@ -43,13 +44,40 @@ def create_undirected_graph():
     for edge in G.edges():
         G[edge[0]][edge[1]]['weight'] /= 2
         print(G[edge[0]][edge[1]]['weight'])
-
+        if G[edge[0]][edge[1]]['weight'] < 1:
+            print(G[edge[0]][edge[1]]['weight'])
     print(G.number_of_edges())
     print(G.number_of_nodes())
     print("called write")
     nx.write_gpickle(G, "api/pickled_files/undirected_graph.gpickle")
 
     return G
+
+def transform_to_stochastic(G):
+    # TODO REFACTOR everything.
+    # TODO Create documentation
+    # Save it as a pickle or something
+    G = G.to_directed()
+    G = nx.stochastic_graph(G, copy=True, weight='weight')
+    for edge in G.edges():
+        # import pdb
+        # pdb.set_trace()
+        print(G[edge[0]][edge[1]]['weight'])
+        print(G[edge[1]][edge[0]]['weight'])
+        G[edge[0]][edge[1]]['weight'] = abs(-(math.log(G[edge[0]][edge[1]]['weight']))) if G[edge[0]][edge[1]]['weight'] > 0 else 0
+        G[edge[1]][edge[0]]['weight'] = abs(-(math.log(G[edge[1]][edge[0]]['weight']))) if G[edge[1]][edge[0]]['weight'] > 0 else 0
+        print(G[edge[0]][edge[1]]['weight'])
+        print(G[edge[1]][edge[0]]['weight'])
+    return G
+
+def get_shortest_neigbors(spotify_id, k):
+    G = transform_to_stochastic(create_undirected_graph())
+    # import pdb
+    # pdb.set_trace()
+    tracks = nx.single_source_dijkstra_path_length(G, spotify_id, cutoff=1)
+    return tracks
+
+
 
 
 if __name__ == '__main__':
@@ -59,4 +87,5 @@ if __name__ == '__main__':
     with app.app_context():
         db.init_app(app)
         g = create_undirected_graph()
+        g1 = transform_to_stochastic(g)
 
