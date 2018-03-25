@@ -109,8 +109,9 @@ def update_spotify_playlists():
                 print("We have it!")
             print(spotify_id)
         # Update undirected graph
-        from api.graph import create_undirected_graph
-        create_undirected_graph()
+        from api.graph import create_undirected_graph, transform_to_stochastic
+        G = create_undirected_graph()
+        transform_to_stochastic(G)
         db.session.close()
 
 

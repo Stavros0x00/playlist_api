@@ -11,7 +11,7 @@ from api.models import Track
 
 def create_undirected_graph():
     # TODO: refactor the whole think...
-    try:
+    try: # Caching instead of pickling?
         G = nx.read_gpickle("api/pickled_files/undirected_graph.gpickle")
     except FileNotFoundError:
         G = nx.Graph()
@@ -68,12 +68,14 @@ def transform_to_stochastic(G):
         G[edge[1]][edge[0]]['weight'] = abs(-(math.log(G[edge[1]][edge[0]]['weight']))) if G[edge[1]][edge[0]]['weight'] > 0 else 0
         print(G[edge[0]][edge[1]]['weight'])
         print(G[edge[1]][edge[0]]['weight'])
+    nx.write_gpickle(G, "api/pickled_files/stochastic_graph.gpickle")
     return G
 
 def get_shortest_neigbors(spotify_id, k):
-    G = transform_to_stochastic(create_undirected_graph())
-    # import pdb
-    # pdb.set_trace()
+    try: # Caching instead of pickling?
+        G = nx.read_gpickle("api/pickled_files/stochastic_graph.gpickle")
+    except FileNotFoundError:
+        G = transform_to_stochastic(create_undirected_graph())
     tracks = nx.single_source_dijkstra_path_length(G, spotify_id, cutoff=1)
     return tracks
 

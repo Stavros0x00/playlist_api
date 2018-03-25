@@ -48,13 +48,29 @@ def get_k_similar():
     # Get tags info from external apis
     from api.graph import get_shortest_neigbors
     data = get_shortest_neigbors(track_id, k)
+    # from pdb import set_trace
+    # set_trace()
     # find a better way
+    del data[track_id]
     to_remove = list(data.keys())[k:]
     for key in to_remove:
         del data[key]
 
+    result = {'items': []}
+    for spotify_id in data:
+        track = db.session.query(Track).filter(Track.spotify_id == spotify_id).first()
+        if not track:
+            continue
+        else:
+            result['items'].append({'spotify_id': spotify_id,
+                                    'artist': track.artist,
+                                    'name': track.name,
+                                    'score': data[spotify_id]})
+
+
     print(data)
-    return jsonify(data=list(data.items()))
+    print(result)
+    return jsonify(result)
 
 
 
