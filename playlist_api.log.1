@@ -1,0 +1,109 @@
+2018-03-24 14:21:26,810 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
+Traceback (most recent call last):
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/networkx/convert.py", line 95, in to_networkx_graph
+    multigraph_input=data.is_multigraph())
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/networkx/convert.py", line 359, in from_dict_of_dicts
+    for u, nbrs in d.items()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/networkx/classes/digraph.py", line 690, in add_edges_from
+    datadict = self._adj[u].get(v, self.edge_attr_dict_factory())
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
+    return obj(*a, **k)
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 50, in get_k_similar
+    data = get_shortest_neigbors(track_id, k)
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/graph.py", line 74, in get_shortest_neigbors
+    G = transform_to_stochastic(create_undirected_graph())
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/graph.py", line 61, in transform_to_stochastic
+    G = nx.stochastic_graph(G, copy=True, weight='weight')
+  File "<decorator-gen-388>", line 2, in stochastic_graph
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/networkx/utils/decorators.py", line 73, in _not_implemented_for
+    return not_implement_for_func(*args, **kwargs)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/networkx/generators/stochastic.py", line 48, in stochastic_graph
+    G = MultiDiGraph(G) if G.is_multigraph() else DiGraph(G)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/networkx/classes/digraph.py", line 315, in __init__
+    convert.to_networkx_graph(incoming_graph_data, create_using=self)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/networkx/convert.py", line 102, in to_networkx_graph
+    raise nx.NetworkXError("Input is not a correct NetworkX graph.")
+networkx.exception.NetworkXError: Input is not a correct NetworkX graph.
+2018-03-24 14:21:30,645 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:21:58,872 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:23:17,434 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:30:38,210 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:30:49,654 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:30:51,812 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:30:53,353 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:35:34,281 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:39:16,931 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
+Traceback (most recent call last):
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
+    return obj(*a, **k)
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 54, in get_k_similar
+    del data[track_id]
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 54, in get_k_similar
+    del data[track_id]
+  File "/usr/lib/python3.6/bdb.py", line 48, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/usr/lib/python3.6/bdb.py", line 67, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+2018-03-24 14:39:23,656 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:40:19,817 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:49:37,820 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:53:00,822 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:53:14,660 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:53:24,676 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 14:56:44,358 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 15:01:29,300 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 15:02:39,656 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-03-24 15:02:53,438 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-04-08 14:32:19,965 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:89]
+2018-04-08 14:34:57,496 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:89]
+2018-04-08 14:35:32,407 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:89]
+2018-04-08 14:38:34,829 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-04-08 14:41:13,428 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-04-08 14:53:06,953 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:90]
+2018-04-08 14:59:56,258 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:93]
+2018-04-08 15:02:15,395 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
+2018-04-08 15:08:39,989 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
+2018-04-08 15:09:43,008 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
+2018-04-08 15:12:04,407 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
+2018-04-08 15:20:52,956 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
+2018-04-08 15:21:25,934 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
+2018-04-08 15:23:30,221 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
+2018-04-08 15:24:15,167 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
+2018-04-08 15:30:02,986 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-04-08 15:30:25,442 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-04-08 15:43:57,429 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
+2018-04-08 15:46:52,550 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:34]
+2018-04-08 15:55:53,277 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
+2018-04-08 15:59:45,813 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
+2018-04-08 16:07:44,507 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
+2018-04-08 16:22:46,456 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:35]

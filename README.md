@@ -100,6 +100,8 @@
     * SENTRY_KEY= (optional)
     * SPOTIPY_CLIENT_ID=
     * SPOTIPY_CLIENT_SECRET=
+    * LAST_FM_API_KEY=
+    * LAST_FM_SHARED_SECRET=
 
     # Run the virtual enviroment. And populate the database creating the schema and running the necessary scripts.
     pipenv shell

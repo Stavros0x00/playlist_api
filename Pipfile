@@ -33,6 +33,7 @@ matplotlib = "*"
 graphviz = "*"
 "psycopg2-binary" = "*"
 pygraphviz = "*"
+pylast = "*"
 
 
 [requires]

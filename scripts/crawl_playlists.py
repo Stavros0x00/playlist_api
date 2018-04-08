@@ -7,8 +7,12 @@ logger = logging.getLogger('api')
 import sys
 sys.path.append('/home/playlistapi/playlist_api/')
 
+from pylast import WSError
+from spotipy import SpotifyException
+
 from api import db, create_app
 from api.auth import sp
+from api.external.lastfm import network as lastfm_obj
 from api.models import Track, Playlist, PlaylistToTrack
 from run import app
 
@@ -68,9 +72,10 @@ def get_categories_playlists():
     for category_id in categories_ids:
         if category_id == 'comedy':  # Don't keep comedy tracks
             continue
-
-        result = sp.category_playlists(category_id=category_id, limit=limit)
-
+        try:
+            result = sp.category_playlists(category_id=category_id, limit=limit)
+        except SpotifyException:
+            continue
         if 'playlists' in result:
             playlists.extend(result['playlists']['items'])
 
@@ -156,7 +161,15 @@ def update_tracks_from_playlist(playlist):
             t.spotify_id = spotify_id
             t.name = track['track']['name']
             t.artist = artists
+            t.preview_url = track['track']['preview_url']
 
+            try:
+                t.lastfm_tags = [tag.item.name for tag in lastfm_obj.get_track(track['track']['artists'][0]['name'],
+                                                                               track['track']['name']
+                                                                               ).get_top_tags(limit=5)]
+                print(t.lastfm_tags)
+            except WSError:
+                pass
             # Add relathionship to the association table
             playlist_to_track.track = t
             with db.session.no_autoflush:

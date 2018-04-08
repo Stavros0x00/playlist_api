@@ -5,6 +5,7 @@ logger = logging.getLogger('api')
 from flask import jsonify, request
 
 from api import bp, limiter, db
+from api.auth import sp
 from api.errors import error_response, bad_request
 from api.models import Track
 from api.utils import wants_json_response
@@ -35,10 +36,15 @@ def get_k_similar():
     if not wants_json_response():
         return bad_request("Send json accept header please")
     track_id = request.args.get('spotify_id')
-    track = db.session.query(Track).filter(Track.spotify_id == track_id).first()
-    if not track:
+    seed_track = db.session.query(Track).filter(Track.spotify_id == track_id).first()
+    if not seed_track:
         return ''
         # raise not found
+    seed_info = {'spotify_id': seed_track.spotify_id,
+                 'artist': seed_track.artist,
+                 'name': seed_track.name,
+                 'preview_url': seed_track.preview_url,
+                 'lastfm_tags': seed_track.lastfm_tags}
     try:
         # n is the max number of results
         k = int(request.args.get('n', 10))
@@ -56,7 +62,7 @@ def get_k_similar():
     for key in to_remove:
         del data[key]
 
-    result = {'items': []}
+    result = {'seed_info': seed_info, 'items': []}
     for spotify_id in data:
         track = db.session.query(Track).filter(Track.spotify_id == spotify_id).first()
         if not track:
@@ -65,9 +71,19 @@ def get_k_similar():
             result['items'].append({'spotify_id': spotify_id,
                                     'artist': track.artist,
                                     'name': track.name,
-                                    'score': data[spotify_id]})
+                                    'score': data[spotify_id],
+                                    'preview_url': track.preview_url,
+                                    'lastfm_tags': track.lastfm_tags})
 
-
+    # Create spotify playlist
+    # playlist = sp.user_playlist_create(user='playlist_api', name=seed_track.name)
+    # import pdb
+    # pdb.set_trace()
+    # # Add tracks to playlist
+    # sp.user_playlist_add_tracks(user='playlist_api', playlist_id='', tracks=[])
+    # # Add link and id to result
+    # result['playlist'] = {'spotify_id': '',
+    #                       'url': ''}
     print(data)
     print(result)
     return jsonify(result)

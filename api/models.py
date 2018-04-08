@@ -1,7 +1,8 @@
 # The models of the playlist api. With the help of the sqlalchemy ORM
 
 from flask import url_for
-from sqlalchemy import or_
+from sqlalchemy import or_, String
+from sqlalchemy.dialects.postgresql import ARRAY
 
 from api import db
 from api.search import add_to_index, remove_from_index, query_index
@@ -79,6 +80,8 @@ class Track(db.Model, SearchableMixin):
     musicbrainz_id = db.Column(db.String(100), index=True, unique=True)
     artist = db.Column(db.String(600), index=True, nullable=False)
     name = db.Column(db.String(300), index=True, nullable=False)
+    preview_url = db.Column(db.String(600), index=True)
+    lastfm_tags = db.Column(ARRAY(String))
 
     playlists = db.relationship("PlaylistToTrack", back_populates="track")
 
