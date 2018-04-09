@@ -38,30 +38,63 @@ Welcome to Playlist Api's documentation!
         "items": [
           {
             "artist": "Tarja",
-            "id": 23073,
+            "id": 37237,
+            "lastfm_tags": [
+              "symphonic metal",
+              "female vocalists",
+              "Classical",
+              "Tarja Turunen",
+              "beautiful"
+            ],
             "name": "Oasis",
+            "preview_url": "https://p.scdn.co/mp3-preview/53a977d65842fa07f7b8081535e579852247d8de?cid=0c0bb28de56d49d3b925f9755a289113",
             "spotify_id": "5hGoIsMmOwF3EsDpp4nwws"
           },
           {
             "artist": "Oasis",
-            "id": 14202,
-            "name": "Champagne Supernova - Remastered",
-            "spotify_id": "40bynawzslg9U7ACq07fAj"
+            "id": 10748,
+            "lastfm_tags": [
+              "britpop",
+              "rock",
+              "oasis",
+              "acoustic",
+              "british"
+            ],
+            "name": "Half The World Away",
+            "preview_url": "https://p.scdn.co/mp3-preview/569431423cf0900a40238fb6989995da3ed4f1f2?cid=0c0bb28de56d49d3b925f9755a289113",
+            "spotify_id": "6aM4E6WfuoDnPAgaKaZ5hM"
           },
           {
             "artist": "Oasis",
-            "id": 17552,
+            "id": 16795,
+            "lastfm_tags": [
+              "britpop",
+              "rock",
+              "90s",
+              "british",
+              "oasis"
+            ],
+            "name": "Don't Look Back in Anger",
+            "preview_url": "https://p.scdn.co/mp3-preview/8d5ecd081b86c19a0189462c2222687088a15ed1?cid=0c0bb28de56d49d3b925f9755a289113",
+            "spotify_id": "698mT3CTx8JEnp7twwJrGG"
+          },
+          {
+            "artist": "Oasis",
+            "id": 16992,
+            "lastfm_tags": [
+              "rock",
+              "britpop",
+              "90s",
+              "alternative",
+              "oasis"
+            ],
             "name": "Wonderwall",
+            "preview_url": null,
             "spotify_id": "7JrUo70YjhU4S7flcJtK0k"
-          },
-          {
-            "artist": "Oasis",
-            "id": 20476,
-            "name": "Live Forever",
-            "spotify_id": "0ZyrgDl8C0Cq9Gt3nPxqvd"
           }
         ]
       }
+
 
 
    :query q: track name, artist name or both
