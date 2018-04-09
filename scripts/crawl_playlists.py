@@ -1,9 +1,10 @@
 #!/usr/bin/env python
-# Script for crawling featured spotify playlists and also getting chosen playlist.net playlists
+# Script for crawling featured spotify playlists, getting
+# lastfm tags for every track and creating or updating graphs needed
 
 import logging
 logger = logging.getLogger('api')
-# To be removed?
+
 import sys
 sys.path.append('/home/playlistapi/playlist_api/')
 
@@ -17,15 +18,11 @@ from api.models import Track, Playlist, PlaylistToTrack
 from run import app
 
 
-# TODO: see possible performance issues. Many O(n^2) operations here
-
-
 def get_featured_playlists():
     """
     Gets featured spotify playlists. By default gets the current for
     american english locale and country
     """
-    # TODO: Handle posible errors
     playlists = []
     limit = 50  # The max
     result = sp.featured_playlists(limit=limit)
@@ -44,7 +41,6 @@ def get_categories():
     """
     Gets all official spotify playlists categories
     """
-    # TODO: Handle posible errors
     categories = []
     limit = 50  # The max
     result = sp.categories(limit=limit)
@@ -63,7 +59,6 @@ def get_categories_playlists():
     """
     Gets all official spotify playlists from oficial categories
     """
-    # TODO: Handle posible errors
     categories = get_categories()
     categories_ids = [category['id'] for category in categories]
 
@@ -86,12 +81,12 @@ def get_categories_playlists():
     return playlists
 
 
-
 def update_spotify_playlists():
     """
     Gets spotify playlists and updates the database
     """
     logger.info('Started updating playlists from spotify')
+
     with app.app_context():
         featured_playlists = get_featured_playlists()
         categories_playlists = get_categories_playlists()
@@ -113,6 +108,7 @@ def update_spotify_playlists():
             else:
                 print("We have it!")
             print(spotify_id)
+
         # Update undirected graph
         from api.graph import create_undirected_graph, transform_to_stochastic
         G = create_undirected_graph()
@@ -124,9 +120,7 @@ def get_playlist_tracks(playlist):
     """
     Gets tracks from a spotify playlist
     """
-    # TODO: Handle posible errors
     tracks = []
-    limit = 50  # The max
     result = sp.user_playlist_tracks(playlist.playlist_user, playlist_id=playlist.spotify_id)
 
     if 'items' in result:
@@ -138,6 +132,7 @@ def get_playlist_tracks(playlist):
 
     return tracks
 
+
 def update_tracks_from_playlist(playlist):
     """
     Populates tracks database table from given playlists.
@@ -148,7 +143,7 @@ def update_tracks_from_playlist(playlist):
     for index, track in enumerate(playlist_tracks):
         spotify_id = track['track']['id']
 
-        # Here i create a string of the names of the artists
+        # Here we create a string of the names of the artists
         artists = ", ".join([artist['name'] for artist in track['track']['artists']])
         if not spotify_id or not track['track']['name'] or not artists:
             print("-================No spotify id or name or artist==========")
@@ -170,6 +165,7 @@ def update_tracks_from_playlist(playlist):
                 print(t.lastfm_tags)
             except WSError:
                 pass
+
             # Add relathionship to the association table
             playlist_to_track.track = t
             with db.session.no_autoflush:
@@ -190,7 +186,6 @@ def update_tracks_from_playlist(playlist):
                 print(ex)
                 db.session.rollback()
             print("We have it!")
-
 
         print(spotify_id)
 

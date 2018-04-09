@@ -2,7 +2,7 @@
 # objects used in the tests
 
 import pytest
-from api import create_app
+from api import create_app, db
 from config import TestingConfig
 from api.external import AcousticBrainz
 from api.external.spotify import sp
@@ -34,9 +34,22 @@ def lastfm_object():
 
 
 @pytest.fixture(scope='module')
-def app():
+def app(request):
     """
     Setups the Flask app-api object.
     """
     app = create_app(config_class=TestingConfig)
+
+    # Establish an application context before running the tests.
+    ctx = app.app_context()
+    ctx.push()
+    db.create_all()
+
+    def teardown():
+        db.session.remove()
+        db.drop_all()
+        ctx.pop()
+
+    request.addfinalizer(teardown)
+
     return app

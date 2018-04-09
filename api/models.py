@@ -1,6 +1,5 @@
 # The models of the playlist api. With the help of the sqlalchemy ORM
 
-from flask import url_for
 from sqlalchemy import or_, String
 from sqlalchemy.dialects.postgresql import ARRAY
 

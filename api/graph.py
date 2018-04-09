@@ -1,12 +1,12 @@
 import math
 
-# remove it later
-import sys
-sys.path.append('/home/work/Dropbox/eap/diplomatikh/source/playlist_api/')
+# # remove it later
+# import sys
+# sys.path.append('/home/work/Dropbox/eap/diplomatikh/source/playlist_api/')
 
 import networkx as nx
 
-from api import db, create_app
+from api import db  # , create_app
 from api.models import Track
 
 
@@ -72,6 +72,7 @@ def transform_to_stochastic(G):
     nx.write_gpickle(G, "api/pickled_files/stochastic_graph.gpickle")
     return G
 
+
 def get_shortest_neigbors(spotify_id):
     try: # Caching instead of pickling?
         G = nx.read_gpickle("api/pickled_files/stochastic_graph.gpickle")
@@ -81,14 +82,14 @@ def get_shortest_neigbors(spotify_id):
     return tracks
 
 
-
-# Remove it later
-if __name__ == '__main__':
-    # Initialize app needed for using the models
-    from config import DevelopmentConfig
-    app = create_app(config_class=DevelopmentConfig)
-    with app.app_context():
-        db.init_app(app)
-        g = create_undirected_graph()
-        g1 = transform_to_stochastic(g)
+#
+# # Remove it later
+# if __name__ == '__main__':
+#     # Initialize app needed for using the models
+#     from config import DevelopmentConfig
+#     app = create_app(config_class=DevelopmentConfig)
+#     with app.app_context():
+#         db.init_app(app)
+#         g = create_undirected_graph()
+#         g1 = transform_to_stochastic(g)
 

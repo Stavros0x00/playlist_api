@@ -57,7 +57,7 @@ def get_k_similar():
     track_spotify_id = request.args.get('spotify_id', '')
     seed_track = db.session.query(Track).filter(Track.spotify_id == track_spotify_id).first()
     if not seed_track:
-        return ''
+        return jsonify({'seed_info': {}, 'items': []})
 
     # The seed track metadata info returned in the response
     seed_info = seed_track.to_dict()

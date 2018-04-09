@@ -36,6 +36,7 @@
     # Login as postgres and config the db. Then exit back to previous user
     sudo -i -u postgres
     createdb playlist_api
+    createdb test_database # For testing reasons
     psql
     alter user postgres password 'YOUR POSTGRES PASS';
     \q
@@ -96,6 +97,7 @@
     * FLASK_APP=run.py
     * SECRET_KEY=(YOUR APP SECRET KEY HERE)
     * DATABASE_URL=postgresql://postgres:{YOUR POSTGRES PASS}@localhost:5432/playlist_api
+    * TEST_DATABASE_URL=postgresql://postgres:{YOUR POSTGRES PASS}@localhost:5432/test_database
     * ELASTICSEARCH_URI=http://localhost:9200
     * SENTRY_KEY= (optional)
     * SPOTIPY_CLIENT_ID=

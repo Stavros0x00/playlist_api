@@ -24,10 +24,11 @@ ExpectedForSimilarSearch = namedtuple('ExpectedForSimilarSearch', ['type', 'item
 
 
 @pytest.mark.parametrize('spotify_id, num_of_results, expected', [
-    ('64c5q8c5j09YueRimGw4l2', '10', ExpectedForSimilarSearch(dict, 'items', 'seed_info', list)),
-    ('64c5q8c5j09YueRimGw4l2', '0', ExpectedForSimilarSearch(dict, 'items', 'seed_info', list)),
+    ('1lAnPorUcAKhxxUQHlc3GZ', '10', ExpectedForSimilarSearch(dict, 'items', 'seed_info', list)),
+    ('1lAnPorUcAKhxxUQHlc3GZ', '0', ExpectedForSimilarSearch(dict, 'items', 'seed_info', list)),
 ])
 def test_similar_search(client, spotify_id, num_of_results, expected):
+    """This tests only the first parts of the function for now. Needs refactoring for better coverage"""
     result = client.get(url_for('api.get_k_similar', spotify_id=spotify_id, n=num_of_results))
     json_payload = result.json
     assert isinstance(json_payload, expected.type)
