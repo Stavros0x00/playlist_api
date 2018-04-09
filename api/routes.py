@@ -33,8 +33,8 @@ def songs():
 @limiter.limit("5 per second")  # Rate limits are restarting with server restart
 def get_k_similar():
     logger.info('Similar endpoint requested from ip %s' % request.remote_addr)
-    if not wants_json_response():
-        return bad_request("Send json accept header please")
+    # if not wants_json_response():
+    #     return bad_request("Send json accept header please")
     track_id = request.args.get('spotify_id')
     seed_track = db.session.query(Track).filter(Track.spotify_id == track_id).first()
     if not seed_track:
