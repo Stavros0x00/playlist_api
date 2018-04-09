@@ -1,3 +1,4 @@
+# Acousticbrainz api configurations
 import musicbrainzngs
 import requests
 from time import sleep
@@ -31,12 +32,3 @@ class AcousticBrainz(object):
         sleep(self.sleep_time)
         self.sleep_time = waiting_for
         return r.json()
-
-
-
-# For testing-playing purposes, TODO: remove it later
-if __name__ == '__main__':
-    a = AcousticBrainz()
-    EXAMPLE_MBID = 'aaf1f9ea-cd47-450c-9c79-6e76fedb1d84'  # Damon Albarn - Heavy Seas Of Love
-    from pprint import pprint as pp
-    pp(a.get_mbid(artist="Clutch", track="The Regulator")['recording-list'][0])

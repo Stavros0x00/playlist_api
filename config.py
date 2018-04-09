@@ -27,7 +27,7 @@ class Config(object):
             'func': 'api.tasks:sync_database_elastic',
             'args': (),
             'trigger': 'cron',
-            'hour': '21'
+            'hour': '23'
         }
     ]
 

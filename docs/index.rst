@@ -12,9 +12,9 @@ Welcome to Playlist Api's documentation!
 
 
 
-.. http:get:: /api/v1/search/songs/
+.. http:get:: /api/v1/search/tracks/
 
-   The songs in the database that matches the query. Max 10 songs with
+   The tracks in the database that matches the query. Max 10 tracks with
    the option to chose the number of results with the n argument. Results are ordered
    by relevance.
 
@@ -22,7 +22,7 @@ Welcome to Playlist Api's documentation!
 
    .. sourcecode:: http
 
-      GET /api/v1/search/songs/?q=oasis&n=4 HTTP/1.1
+      GET /api/v1/search/tracks/?q=oasis&n=4 HTTP/1.1
       Host: example.com
       Accept: application/json
 
@@ -64,7 +64,7 @@ Welcome to Playlist Api's documentation!
       }
 
 
-   :query q: song name, artist name or both
+   :query q: track name, artist name or both
    :query n: Number of results. Max 10. Default 10.
    :reqheader Accept: application/json
    :resheader Content-Type: application/json

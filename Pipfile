@@ -34,6 +34,7 @@ graphviz = "*"
 "psycopg2-binary" = "*"
 pygraphviz = "*"
 pylast = "*"
+alabaster = "*"
 
 
 [requires]

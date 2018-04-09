@@ -13,19 +13,29 @@ from raven.contrib.flask import Sentry
 from config import Config
 
 
+# The ORM used to communicate with the db
 db = SQLAlchemy()
+# Used for database migrations
 migrate = Migrate()
+# Extension used for rate limiting
 limiter = Limiter(key_func=get_remote_address)
+# Extension used for running background jobs
 scheduler = APScheduler()
+# Exploit flask framework blueprint architecture-design
 bp = Blueprint('api', __name__)
+# Library used for logging errors in sentry service
 sentry = Sentry()
 
 
 def create_app(config_class=Config):
+    """
+    A callable for creating an application object. Needed for running the api or creating one
+    when testing for example with the appropriate configurations.
+    """
     app = Flask(__name__)
     app.config.from_object(config_class)
 
-    # dsn=''
+    # "Connect" extensions with the app and register blueprints
     db.init_app(app)
     migrate.init_app(app, db)
     limiter.init_app(app)
@@ -38,12 +48,6 @@ def create_app(config_class=Config):
         sentry.init_app(app, dsn=os.getenv('SENTRY_KEY'))
 
     return app
-
-#
-# app = create_app()
-#
-# scheduler.init_app(app)
-# scheduler.start()
 
 
 from api import routes, models

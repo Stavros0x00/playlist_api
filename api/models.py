@@ -94,13 +94,15 @@ class Track(db.Model, SearchableMixin):
             'artist': self.artist,
             'name': self.name,
             'spotify_id': self.spotify_id,
-            # '_links': {
-            #     'self': url_for('app.songs'),
-            # }
+            'preview_url': self.preview_url,
+            'lastfm_tags': self.lastfm_tags,
         }
         return data
 
     def get_neighbors(self):
+        """
+        Gets the previous and next tracks in a playlist
+        """
         neighbors = []
         playlists = self.playlists
         for playlist in playlists:
