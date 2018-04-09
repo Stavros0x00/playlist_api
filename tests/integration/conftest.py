@@ -3,9 +3,9 @@
 
 import pytest
 from api import create_app
-from api.auth import sp
 from config import TestingConfig
 from api.external import AcousticBrainz
+from api.external.spotify import sp
 
 
 @pytest.fixture(scope='module')

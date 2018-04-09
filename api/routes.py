@@ -5,8 +5,8 @@ logger = logging.getLogger('api')
 from flask import jsonify, request
 
 from api import bp, limiter, db
-from api.auth import sp
 from api.errors import error_response, bad_request
+from api.external.spotify import sp
 from api.models import Track
 from api.utils import wants_json_response
 
@@ -15,8 +15,8 @@ from api.utils import wants_json_response
 @limiter.limit("5 per second")  # Rate limits are restarting with server restart
 def songs():
     logger.info('Search endpoint requested from ip %s' % request.remote_addr)
-    if not wants_json_response():
-        return bad_request("Send json accept header please")
+    # if not wants_json_response():
+    #     return bad_request("Send json accept header please")
     track_query = request.args.get('q')
     try:
         # n is the max number of results
@@ -71,7 +71,7 @@ def get_k_similar():
             result['items'].append({'spotify_id': spotify_id,
                                     'artist': track.artist,
                                     'name': track.name,
-                                    'score': data[spotify_id],
+                                    'score': 1 / data[spotify_id],
                                     'preview_url': track.preview_url,
                                     'lastfm_tags': track.lastfm_tags})
 
