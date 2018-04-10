@@ -100,7 +100,7 @@ class Track(db.Model, SearchableMixin):
 
     def get_neighbors(self):
         """
-        Gets the previous and next tracks in a playlist
+        Gets the previous and next tracks in playlists it belongs
         """
         neighbors = []
         playlists = self.playlists

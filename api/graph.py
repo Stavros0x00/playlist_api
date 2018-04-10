@@ -9,23 +9,16 @@ from api.models import Track
 
 def create_undirected_graph():
     """
-    Creates or updates a pickled undirected graph from the stored tracks.
+    Creates a pickled undirected graph from the stored tracks.
     """
-    try:
-        G = nx.read_gpickle(current_app.config['UNDIRECTED_GRAPH_LOCATION'])
-    except FileNotFoundError:
-        G = nx.Graph()
+    G = nx.Graph()
 
-    # Collect the tracks from the db that don't match current created nodes in the graph
     tracks = db.session.query(Track.spotify_id).all()
-    tracks = [track[0] for track in tracks if not G.has_node(track[0])]
-
-    if not tracks:
-        return G
+    track_spotify_ids = [track.spotify_id for track in tracks]
 
     G.add_nodes_from(tracks)
 
-    for track_spotify_id in tracks:
+    for track_spotify_id in track_spotify_ids:
         track = db.session.query(Track).filter(Track.spotify_id == track_spotify_id).first()
         if not track:
             continue
@@ -41,6 +34,8 @@ def create_undirected_graph():
     # Normalize weight until you find a better solution to not record double weights
     for edge in G.edges():
         G[edge[0]][edge[1]]['weight'] /= 2
+
+    print("Created undirected graph %d nodes" % G.number_of_nodes())
 
     nx.write_gpickle(G, current_app.config['UNDIRECTED_GRAPH_LOCATION'])
 
