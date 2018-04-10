@@ -6,7 +6,7 @@ import logging
 logger = logging.getLogger('api')
 
 import sys
-sys.path.append('/home/playlistapi/playlist_api/')
+sys.path.append('/home/work/Dropbox/eap/diplomatikh/source/playlist_api/')
 
 from pylast import WSError
 from spotipy import SpotifyException

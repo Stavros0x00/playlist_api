@@ -16,7 +16,7 @@ def create_undirected_graph():
     tracks = db.session.query(Track.spotify_id).all()
     track_spotify_ids = [track.spotify_id for track in tracks]
 
-    G.add_nodes_from(tracks)
+    G.add_nodes_from(track_spotify_ids)
 
     for track_spotify_id in track_spotify_ids:
         track = db.session.query(Track).filter(Track.spotify_id == track_spotify_id).first()
