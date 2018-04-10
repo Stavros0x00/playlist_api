@@ -11,6 +11,8 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ELASTICSEARCH_URI = os.environ.get('ELASTICSEARCH_URI')
+    UNDIRECTED_GRAPH_LOCATION = 'api/pickled_files/undirected_graph.gpickle'
+    DIRECTED_GRAPH_LOCATION = 'api/pickled_files/stochastic_graph.gpickle'
 
     JOBS = [
         {
@@ -46,3 +48,5 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL')
+    UNDIRECTED_GRAPH_LOCATION = 'api/pickled_files/test_undirected_graph.gpickle'
+    DIRECTED_GRAPH_LOCATION = 'api/pickled_files/test_stochastic_graph.gpickle'

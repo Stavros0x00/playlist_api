@@ -12,7 +12,7 @@ ExpectedForTrackSearch = namedtuple('ExpectedForTrackSearch', ['type', 'field', 
     ('Oasis', '10', ExpectedForTrackSearch(dict, 'items', list)),
     ('Oasis', '0', ExpectedForTrackSearch(dict, 'items', list)),
 ])
-def test_song_search(client, query, num_of_results, expected):
+def test_song_search(client, query, num_of_results, expected):  # The client object comes from pytest-flask fixtures
     result = client.get(url_for('api.tracks', q=query, n=num_of_results))
     json_payload = result.json
     assert isinstance(json_payload, expected.type)

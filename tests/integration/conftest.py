@@ -40,15 +40,15 @@ def app(request):
     """
     app = create_app(config_class=TestingConfig)
 
-    # Establish an application context before running the tests.
-    ctx = app.app_context()
-    ctx.push()
+    # Create an application context
+    app_context = app.app_context()
+    app_context.push()
     db.create_all()
 
     def teardown():
         db.session.remove()
         db.drop_all()
-        ctx.pop()
+        app_context.pop()
 
     request.addfinalizer(teardown)
 
