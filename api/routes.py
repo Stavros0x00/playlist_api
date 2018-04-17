@@ -1,6 +1,7 @@
 # View functions for every api endpoint
 import logging
 logger = logging.getLogger('api')
+import os
 
 from flask import jsonify, request
 
@@ -90,16 +91,14 @@ def get_k_similar():
             track_info.update({'score': 1 / nodes[spotify_id]})
             result['items'].append(track_info)
 
-    # TODO: Implement it or remove it
-    # Create spotify playlist
-    # playlist = sp.user_playlist_create(user='playlist_api', name=seed_track.name)
-    # import pdb
-    # pdb.set_trace()
-    # # Add tracks to playlist
-    # sp.user_playlist_add_tracks(user='playlist_api', playlist_id='', tracks=[])
-    # # Add link and id to result
-    # result['playlist'] = {'spotify_id': '',
-    #                       'url': ''}
+
+    playlist = sp.user_playlist_create(user=os.environ.get('SPOTIFY_USERNAME'), name=seed_track.name)
+
+    # Add tracks to playlist
+    sp.user_playlist_add_tracks(user=os.environ.get('SPOTIFY_USERNAME'), playlist_id=playlist['id'], tracks=nodes)
+    # Add link and id to result
+    result['playlist'] = {'spotify_id': playlist['id'],
+                          'url': playlist['external_urls']['spotify']}
 
     return jsonify(result)
 
