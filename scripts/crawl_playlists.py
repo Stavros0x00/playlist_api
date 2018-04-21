@@ -13,10 +13,11 @@ from spotipy import SpotifyException
 
 from api import db, create_app
 from api.external.lastfm import network as lastfm_obj
-from api.external.spotify import sp
+from api.external.spotify import get_spotify_object
 from api.models import Track, Playlist, PlaylistToTrack
 from run import app
 
+sp = get_spotify_object()
 
 def get_featured_playlists():
     """

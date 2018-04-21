@@ -7,12 +7,23 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     DEBUG = False
     TESTING = False
+
     SECRET_KEY = os.environ.get('SECRET_KEY')
+
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
     ELASTICSEARCH_URI = os.environ.get('ELASTICSEARCH_URI')
+
     UNDIRECTED_GRAPH_LOCATION = 'api/pickled_files/undirected_graph.gpickle'
     DIRECTED_GRAPH_LOCATION = 'api/pickled_files/stochastic_graph.gpickle'
+
+    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_PORT = 465
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+
 
     JOBS = [
         {

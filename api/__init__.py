@@ -7,6 +7,7 @@ from flask_apscheduler import APScheduler
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail
 from flask_migrate import Migrate
 from raven.contrib.flask import Sentry
 
@@ -25,6 +26,8 @@ scheduler = APScheduler()
 bp = Blueprint('api', __name__)
 # Library used for logging errors in sentry service
 sentry = Sentry()
+# Extension for sending mails
+mail = Mail()
 
 
 def create_app(config_class=Config):
@@ -39,6 +42,7 @@ def create_app(config_class=Config):
     db.init_app(app)
     migrate.init_app(app, db)
     limiter.init_app(app)
+    mail.init_app(app)
 
     app.register_blueprint(bp)
 

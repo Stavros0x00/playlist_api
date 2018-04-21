@@ -1,4 +1,4 @@
-2018-04-08 16:22:46,904 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
+2018-04-21 14:43:45,479 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
 Traceback (most recent call last):
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,20 +14,25 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
     return obj(*a, **k)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 79, in get_k_similar
-    playlist = sp.user_playlist_create(user='playlist_api', name=track.name)
-AttributeError: 'NoneType' object has no attribute 'name'
-2018-04-08 16:24:34,770 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:35]
-2018-04-08 16:24:36,071 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
-Traceback (most recent call last):
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 119, in _internal_call
-    r.raise_for_status()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/requests/models.py", line 935, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://api.spotify.com/v1/users/playlist_api/playlists
-
-During handling of the above exception, another exception occurred:
-
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 112, in get_k_similar
+    ['santoniou.com@gmail.com'])
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/utils.py", line 17, in send_email
+    mail.send(msg)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 165, in configure_host
+    host.login(self.mail.username, self.mail.password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials r57sm5172351edd.92 - gsmtp')
+2018-04-21 14:46:28,643 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:54]
+2018-04-21 14:46:30,030 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
 Traceback (most recent call last):
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -43,39 +48,30 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
     return obj(*a, **k)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 79, in get_k_similar
-    playlist = sp.user_playlist_create(user='playlist_api', name=seed_track.name)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 406, in user_playlist_create
-    return self._post("users/%s/playlists" % (user,), payload=data)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 178, in _post
-    return self._internal_call('POST', url, payload, kwargs)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 124, in _internal_call
-    headers=r.headers)
-spotipy.client.SpotifyException: http status: 403, code:-1 - https://api.spotify.com/v1/users/playlist_api/playlists:
- This request requires user authentication.
-2018-04-08 19:16:55,543 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:35]
-2018-04-08 19:17:28,622 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:35]
-2018-04-08 21:00:00,002 INFO: Started syncing database with elastic [in sync_db_elastic.sync_db_elastic.py:19]
-2018-04-09 06:22:03,830 INFO: Started updating playlists from spotify [in crawl_playlists.crawl_playlists.py:94]
-2018-04-09 11:53:15,856 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:17]
-2018-04-09 13:25:30,198 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:21]
-2018-04-09 13:25:44,574 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:21]
-2018-04-09 13:29:30,980 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:21]
-2018-04-09 13:29:55,860 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:21]
-2018-04-09 13:30:01,691 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:21]
-2018-04-09 13:40:38,636 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:21]
-2018-04-09 13:41:14,378 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:21]
-2018-04-09 14:10:59,934 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:52]
-2018-04-09 14:15:13,697 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:52]
-2018-04-09 14:15:30,932 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:24]
-2018-04-09 14:16:21,094 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:52]
-2018-04-09 14:33:12,892 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:52]
-2018-04-09 14:38:11,197 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 112, in get_k_similar
+    ['santoniou.com@gmail.com'])
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/utils.py", line 17, in send_email
+    mail.send(msg)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 165, in configure_host
+    host.login(self.mail.username, self.mail.password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials z42sm5298348edz.36 - gsmtp')
+2018-04-21 14:46:37,794 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:54]
+2018-04-21 14:46:39,737 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
 Traceback (most recent call last):
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
     reraise(exc_type, exc_value, tb)
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
@@ -86,13 +82,21 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
     return obj(*a, **k)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 83, in get_k_similar
-    for spotify_id in nodes:
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 83, in get_k_similar
-    for spotify_id in nodes:
-  File "/usr/lib/python3.6/bdb.py", line 48, in trace_dispatch
-    return self.dispatch_line(frame)
-  File "/usr/lib/python3.6/bdb.py", line 67, in dispatch_line
-    if self.quitting: raise BdbQuit
-bdb.BdbQuit
-2018-04-09 14:38:16,438 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:52]
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 112, in get_k_similar
+    ['santoniou.com@gmail.com'])
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/utils.py", line 17, in send_email
+    mail.send(msg)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 165, in configure_host
+    host.login(self.mail.username, self.mail.password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials n8sm4970381edb.5 - gsmtp')
+2018-04-21 14:48:18,227 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:54]

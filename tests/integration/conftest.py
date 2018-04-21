@@ -7,7 +7,7 @@ import pytest
 from api import create_app, db
 from config import TestingConfig
 from api.external import AcousticBrainz
-from api.external.spotify import sp
+from api.external.spotify import get_spotify_object
 from api.external.lastfm import network
 from api.models import Playlist, PlaylistToTrack, Track
 
@@ -25,7 +25,7 @@ def spotify_object():
     """
     Setups the Spotify object.
     """
-    return sp
+    return get_spotify_object()
 
 
 @pytest.fixture(scope='module')

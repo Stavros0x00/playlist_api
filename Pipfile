@@ -35,6 +35,7 @@ graphviz = "*"
 pygraphviz = "*"
 pylast = "*"
 alabaster = "*"
+flask-mail = "*"
 
 
 [requires]
