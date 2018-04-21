@@ -117,7 +117,7 @@ Welcome to Playlist Api's documentation!
 
    .. sourcecode:: http
 
-      GET /api/v1/similar/?spotify_id=1mpkTTUxWTB3FlO2OlRIB4&n=5 HTTP/1.1
+      GET /api/v1/similar/?spotify_id=30UTvW5IQWXmvdcZ1zbF6R&n=5 HTTP/1.1
       Host: example.com
       Accept: application/json
 
@@ -132,70 +132,83 @@ Welcome to Playlist Api's documentation!
       {
         "items": [
           {
-            "artist": "Black Rebel Motorcycle Club",
-            "id": 38870,
+            "artist": "Boogie Down Productions",
+            "id": 6007,
             "lastfm_tags": [
-              "indie rock",
-              "folk",
-              "Garage Rock",
-              "rock",
-              "indie"
+              "Hip-Hop",
+              "Old School Hip Hop",
+              "old school",
+              "hip hop",
+              "rap"
             ],
-            "name": "Restless Sinner",
-            "preview_url": "https://p.scdn.co/mp3-preview/16e7bdd07776b8bcfb0a565939450253451b895b?cid=0c0bb28de56d49d3b925f9755a289113",
+            "name": "The Bridge Is Over",
+            "preview_url": "https://p.scdn.co/mp3-preview/04a97c7c1c8cc89293006d3f4e57aac4ccf824bd?cid=0c0bb28de56d49d3b925f9755a289113",
             "score": 2.7284167729011495,
-            "spotify_id": "4qrUQuQ2Nt9jgZW99rBcbo"
+            "spotify_id": "5jkjpSsMOfsxgdGScPZVq2"
           },
           {
-            "artist": "Laura Marling",
-            "id": 38872,
+            "artist": "Beastie Boys",
+            "id": 6009,
             "lastfm_tags": [
-              "british",
-              "folk",
-              "indie folk",
-              "psychedelic folk",
-              "radio paradise"
+              "Hip-Hop",
+              "rap",
+              "hip hop",
+              "80s",
+              "Beastie Boys"
             ],
-            "name": "Devil's Resting Place",
+            "name": "Shake Your Rump",
             "preview_url": null,
             "score": 2.7284167729011495,
-            "spotify_id": "341o4T7XtSZUKeQvIw2wms"
+            "spotify_id": "4RvprQhj7Ov1SFQ3HfO7FH"
           },
           {
-            "artist": "Jonah Tolchin",
-            "id": 38869,
-            "lastfm_tags": [],
-            "name": "Me & the Devil Blues",
-            "preview_url": null,
-            "score": 1.3642083864505747,
-            "spotify_id": "5dDaQf3QUWIpukuGFDhScm"
-          },
-          {
-            "artist": "Robert Johnson",
-            "id": 38762,
+            "artist": "Ice-T",
+            "id": 6006,
             "lastfm_tags": [
-              "blues",
-              "delta blues",
-              "Classic Blues",
-              "30s",
-              "acoustic blues"
+              "Hip-Hop",
+              "rap",
+              "old school",
+              "west coast",
+              "80s"
             ],
-            "name": "Cross Road Blues",
-            "preview_url": "https://p.scdn.co/mp3-preview/15f4fb795c08eaded1a326baa0e72cfc05ad1ddf?cid=0c0bb28de56d49d3b925f9755a289113",
+            "name": "6 'N The Mornin'",
+            "preview_url": "https://p.scdn.co/mp3-preview/0a4e9b835553a99d1b1a4934443fecc1d3a24dd2?cid=0c0bb28de56d49d3b925f9755a289113",
             "score": 1.3642083864505747,
-            "spotify_id": "1TrGdXSgiBm8W68D2K1COG"
+            "spotify_id": "2cBOh97kgDenDOdtKhwU9O"
+          },
+          {
+            "artist": "Schoolly D",
+            "id": 6010,
+            "lastfm_tags": [
+              "hip hop",
+              "breakbeat",
+              "questions",
+              "title is a full sentence",
+              "cold case"
+            ],
+            "name": "P.S.K. 'What Does It Mean'?",
+            "preview_url": "https://p.scdn.co/mp3-preview/7f2c402a4d8d53524f4b01a7db9dc41955461e92?cid=0c0bb28de56d49d3b925f9755a289113",
+            "score": 1.3642083864505747,
+            "spotify_id": "3StKzbpR9dRZB8epDx4KDW"
           }
         ],
+        "playlist": {
+          "spotify_id": "4PDd58PluSP0lnach9fXX3",
+          "url": "https://open.spotify.com/user/6faqhxu4ww7isy9sr96j3o116/playlist/4PDd58PluSP0lnach9fXX3"
+        },
         "seed_info": {
-          "artist": "Brown Bird",
-          "id": 38871,
+          "artist": "De La Soul",
+          "id": 6008,
           "lastfm_tags": [
-            "folk",
-            "bandmembers with a hairy chest"
+            "Hip-Hop",
+            "hip hop",
+            "old school",
+            "rap",
+            "80s"
           ],
-          "name": "Seven Hells",
-          "preview_url": "https://p.scdn.co/mp3-preview/7087f78b77b349f63ebb0c9eefe06db1cdb8276a?cid=0c0bb28de56d49d3b925f9755a289113",
-          "spotify_id": "1mpkTTUxWTB3FlO2OlRIB4"
+          "name": "Me, Myself And I",
+          "preview_url": null,
+          "spotify_id": "30UTvW5IQWXmvdcZ1zbF6R"
         }
       }
 
