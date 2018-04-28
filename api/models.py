@@ -154,3 +154,33 @@ class PlaylistToTrack(db.Model):
 
     def __repr__(self):
         return '<PlaylistToTrack {}, {}, {}>'.format(self.playlist_id, self.track_id, self.order_in_playlist)
+
+
+class TrackFeatures(db.Model):
+    """
+    Creates the track_features python object representing the musical features of a track
+     given from spotify from the database.
+    """
+    __tablename__ = "track_features"
+
+    id = db.Column(db.Integer, primary_key=True)
+    track_id = db.Column(db.Integer, db.ForeignKey('tracks.id'))
+
+    # Track features:
+    acousticness = db.Column(db.Float)
+    danceability = db.Column(db.Float)
+    duration_ms = db.Column(db.Integer)
+    energy = db.Column(db.Float)
+    instrumentalness = db.Column(db.Float)
+    key = db.Column(db.Integer)
+    liveness = db.Column(db.Float)
+    loudness = db.Column(db.Float)
+    mode = db.Column(db.Integer)
+    speechiness = db.Column(db.Float)
+    tempo = db.Column(db.Float)
+    time_signature = db.Column(db.Integer)
+    valence = db.Column(db.Float)
+
+
+    def __repr__(self):
+        return '<TrackFeatures {}, {}>'.format(self.spotify_id, self.track_id)

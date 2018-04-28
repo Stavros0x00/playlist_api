@@ -110,3 +110,13 @@ def get_k_similar():
                    'Possible spotify refresh token invalidation. Check errors and sentry')
 
     return jsonify(result)
+
+#
+# def get_and_check_seed_reccomentations(sp, spotify_id):
+#     """Gets a spotify object and a spotify id and queries the spotify seed recommendations api.
+#     Then checks if we have returned ids in the db. Then returns them."""
+#
+#     seed_reccomentations = sp.recommentations(seed_tracks=[spotify_id])
+#
+#     found_recommentations = []
+#     return found_recommentations

@@ -15,3 +15,11 @@ def send_email(to, message):
     msg = Message('Log-email-posible-error', sender='santoniou.com@gmail.com', recipients=[to])
     msg.body = message
     mail.send(msg)
+
+
+def chunks(l, n):
+    """Yield successive n-sized chunks from l.
+    https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks
+    """
+    for i in range(0, len(l), n):
+        yield l[i:i + n]

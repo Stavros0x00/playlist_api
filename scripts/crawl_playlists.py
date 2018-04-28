@@ -14,7 +14,7 @@ from spotipy import SpotifyException
 from api import db, create_app
 from api.external.lastfm import network as lastfm_obj
 from api.external.spotify import get_spotify_object
-from api.models import Track, Playlist, PlaylistToTrack
+from api.models import Track, Playlist, PlaylistToTrack, TrackFeatures
 from run import app
 
 sp = get_spotify_object()
@@ -171,6 +171,27 @@ def update_tracks_from_playlist(playlist):
             playlist_to_track.track = t
             with db.session.no_autoflush:
                 playlist.tracks.append(playlist_to_track)
+            db.session.flush()
+
+            # Add track features in the db
+            audio_features = sp.audio_features(t.spotify_id)[0]
+            track_features = TrackFeatures(
+                track_id=t.id,
+                acousticness=audio_features['acousticness'],
+                danceability=audio_features['danceability'],
+                duration_ms=audio_features['duration_ms'],
+                energy=audio_features['energy'],
+                instrumentalness=audio_features['instrumentalness'],
+                key=audio_features['key'],
+                liveness=audio_features['liveness'],
+                loudness=audio_features['loudness'],
+                mode=audio_features['mode'],
+                speechiness=audio_features['speechiness'],
+                tempo=audio_features['tempo'],
+                time_signature=audio_features['time_signature'],
+                valence=audio_features['valence'],
+            )
+            db.session.add(track_features)
             db.session.flush()
 
         else:
