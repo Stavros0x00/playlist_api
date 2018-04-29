@@ -9,7 +9,7 @@ from spotipy import SpotifyException
 from api import bp, limiter, db, sentry
 from api.graph import get_shortest_neigbors
 from api.errors import bad_request
-from api.external.spotify import get_spotify_object
+from api.external.spotify import get_spotify_object, get_and_check_seed_recommendations
 from api.models import Track
 from api.utils import wants_json_response, send_email
 
@@ -44,7 +44,7 @@ def tracks():
 
 
 @bp.route('/api/v1/similar/', methods=['GET'])
-@limiter.limit("5 per second")  # Rate limits are restarting with server restart
+@limiter.limit("1 per second")  # Rate limits are restarting with server restart
 def get_k_similar():
     """
     With a spotify_id return similar tracks with the help of the api's graph algorithms.
@@ -94,6 +94,13 @@ def get_k_similar():
             track_info.update({'score': 1 / nodes[spotify_id]})
             result['items'].append(track_info)
 
+    if 'with_spotify_seed' in request.args:
+        # If with_spotify_seed arg, modify score of suggested from graph tracks
+        # also add in result the max 20 from seed recommendations that we also have in our db
+        # the spotify recommendations are added to the spotify created playlist
+        result['seed_spotify_recommendations'], result['items'] = get_and_check_seed_recommendations(track_spotify_id, result['items'])
+        nodes_to_playlist.extend([rec['spotify_id'] for rec in result['seed_spotify_recommendations']])
+
     try:
         sp = get_spotify_object(with_oauth=True)
         playlist = sp.user_playlist_create(user=os.environ.get('SPOTIFY_USERNAME'), name=seed_track.name)
@@ -110,13 +117,3 @@ def get_k_similar():
                    'Possible spotify refresh token invalidation. Check errors and sentry')
 
     return jsonify(result)
-
-#
-# def get_and_check_seed_reccomentations(sp, spotify_id):
-#     """Gets a spotify object and a spotify id and queries the spotify seed recommendations api.
-#     Then checks if we have returned ids in the db. Then returns them."""
-#
-#     seed_reccomentations = sp.recommentations(seed_tracks=[spotify_id])
-#
-#     found_recommentations = []
-#     return found_recommentations

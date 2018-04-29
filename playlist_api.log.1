@@ -1,4 +1,92 @@
-2018-04-21 14:43:45,479 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
+2018-04-28 19:48:54,176 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
+Traceback (most recent call last):
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
+    return obj(*a, **k)
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 101, in get_k_similar
+    result['seed_recommentations'], result['items'] = get_and_check_seed_recommendations(track_spotify_id, result['items'])
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 146, in get_and_check_seed_recommendations
+    # modify graph tracks
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 146, in get_and_check_seed_recommendations
+    # modify graph tracks
+  File "/usr/lib/python3.6/bdb.py", line 48, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/usr/lib/python3.6/bdb.py", line 67, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+2018-04-28 19:49:00,735 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
+2018-04-28 19:51:06,627 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
+Traceback (most recent call last):
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
+    return obj(*a, **k)
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 101, in get_k_similar
+    result['seed_recommentations'], result['items'] = get_and_check_seed_recommendations(track_spotify_id, result['items'])
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 153, in get_and_check_seed_recommendations
+    else:
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 153, in get_and_check_seed_recommendations
+    else:
+  File "/usr/lib/python3.6/bdb.py", line 48, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/usr/lib/python3.6/bdb.py", line 67, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+2018-04-28 19:51:12,621 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
+2018-04-28 19:53:19,242 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
+Traceback (most recent call last):
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
+    return obj(*a, **k)
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 101, in get_k_similar
+    result['seed_recommentations'], result['items'] = get_and_check_seed_recommendations(track_spotify_id, result['items'])
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 155, in get_and_check_seed_recommendations
+    return graph_tracks_list, seed_recommendations_for_result
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 155, in get_and_check_seed_recommendations
+    return graph_tracks_list, seed_recommendations_for_result
+  File "/usr/lib/python3.6/bdb.py", line 48, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/usr/lib/python3.6/bdb.py", line 67, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+2018-04-28 19:53:24,529 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
+2018-04-28 19:55:15,213 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
+2018-04-28 19:59:57,576 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:27]
+2018-04-28 20:01:33,205 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:27]
+2018-04-28 20:01:56,626 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
+2018-04-28 20:01:58,807 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
 Traceback (most recent call last):
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,89 +102,19 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
     return obj(*a, **k)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 112, in get_k_similar
-    ['santoniou.com@gmail.com'])
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/utils.py", line 17, in send_email
-    mail.send(msg)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 491, in send
-    with self.connect() as connection:
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 144, in __enter__
-    self.host = self.configure_host()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 165, in configure_host
-    host.login(self.mail.username, self.mail.password)
-  File "/usr/lib/python3.6/smtplib.py", line 730, in login
-    raise last_exception
-  File "/usr/lib/python3.6/smtplib.py", line 721, in login
-    initial_response_ok=initial_response_ok)
-  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
-    raise SMTPAuthenticationError(code, resp)
-smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials r57sm5172351edd.92 - gsmtp')
-2018-04-21 14:46:28,643 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:54]
-2018-04-21 14:46:30,030 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
-Traceback (most recent call last):
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
-    raise value
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
-    return obj(*a, **k)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 112, in get_k_similar
-    ['santoniou.com@gmail.com'])
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/utils.py", line 17, in send_email
-    mail.send(msg)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 491, in send
-    with self.connect() as connection:
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 144, in __enter__
-    self.host = self.configure_host()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 165, in configure_host
-    host.login(self.mail.username, self.mail.password)
-  File "/usr/lib/python3.6/smtplib.py", line 730, in login
-    raise last_exception
-  File "/usr/lib/python3.6/smtplib.py", line 721, in login
-    initial_response_ok=initial_response_ok)
-  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
-    raise SMTPAuthenticationError(code, resp)
-smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials z42sm5298348edz.36 - gsmtp')
-2018-04-21 14:46:37,794 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:54]
-2018-04-21 14:46:39,737 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
-Traceback (most recent call last):
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
-    raise value
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
-    return obj(*a, **k)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 112, in get_k_similar
-    ['santoniou.com@gmail.com'])
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/utils.py", line 17, in send_email
-    mail.send(msg)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 491, in send
-    with self.connect() as connection:
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 144, in __enter__
-    self.host = self.configure_host()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 165, in configure_host
-    host.login(self.mail.username, self.mail.password)
-  File "/usr/lib/python3.6/smtplib.py", line 730, in login
-    raise last_exception
-  File "/usr/lib/python3.6/smtplib.py", line 721, in login
-    initial_response_ok=initial_response_ok)
-  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
-    raise SMTPAuthenticationError(code, resp)
-smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials n8sm4970381edb.5 - gsmtp')
-2018-04-21 14:48:18,227 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:54]
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 110, in get_k_similar
+    sp.user_playlist_add_tracks(user=os.environ.get('SPOTIFY_USERNAME'), playlist_id=playlist['id'], tracks=nodes_to_playlist)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 455, in user_playlist_add_tracks
+    ftracks = [self._get_uri('track', tid) for tid in tracks]
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 455, in <listcomp>
+    ftracks = [self._get_uri('track', tid) for tid in tracks]
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 862, in _get_uri
+    return 'spotify:' + type + ":" + self._get_id(type, id)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 846, in _get_id
+    fields = id.split(':')
+AttributeError: 'list' object has no attribute 'split'
+2018-04-28 20:02:20,212 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
+2018-04-28 20:03:20,516 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
+2018-04-28 20:03:54,732 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
+2018-04-28 20:05:08,912 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:27]
+2018-04-28 20:05:20,721 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]

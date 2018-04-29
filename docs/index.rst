@@ -217,6 +217,10 @@ Welcome to Playlist Api's documentation!
 
    :query spotify_id: Spotify id of the track
    :query n: Number of results. Max 10. Default 10.
+   :query with_spotify_seed: If with_spotify_seed arg specified, the api queries the spotify seed recommendation endpoint. If it finds tracks that we have in the database:
+
+          1) Boosts score of possible common tracks from the graph suggestions
+          2) Returns seed_spotify_recommendations items that we have in the database with a max of 20 tracks found.
    :reqheader Accept: application/json
    :resheader Content-Type: application/json
    :statuscode 200: no error
