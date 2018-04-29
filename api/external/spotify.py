@@ -42,8 +42,6 @@ def get_and_check_seed_recommendations(spotify_id, graph_tracks):
     Then checks if we have returned ids in the db and common spotify_ids with the
     suggested from the graph tracks. If we have common then boosts the appropriate score.
     Then returns the modified graph suggested items and the suggested from spotify tracks that we have in the db already."""
-    from pdb import set_trace
-    set_trace()
     sp = get_spotify_object()
     seed_recommendations = sp.recommendations(seed_tracks=[spotify_id], limit=100)
 
