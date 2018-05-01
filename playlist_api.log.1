@@ -1,81 +1,4 @@
-2018-04-28 20:05:49,445 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:27]
-2018-04-28 20:05:59,876 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-28 20:07:48,179 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-28 20:10:32,169 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:27]
-2018-04-28 20:10:42,035 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:27]
-2018-04-28 20:10:54,003 INFO: Search endpoint requested from ip 127.0.0.1 [in routes.routes.py:27]
-2018-04-28 20:11:04,092 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-28 20:24:42,161 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-28 20:24:56,010 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:29:10,028 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:30:48,406 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:31:18,014 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:33:18,428 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:33:39,952 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:33:55,902 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:37:56,883 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:38:17,430 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:39:05,053 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:40:00,614 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:40:51,388 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:41:01,759 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:41:07,534 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:41:16,484 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:41:28,106 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:43:53,783 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:55]
-2018-04-29 15:47:20,217 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
-Traceback (most recent call last):
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
-    raise value
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
-    return obj(*a, **k)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 102, in get_k_similar
-    nodes_to_playlist.extend([rec['spotify_id'] for rec in result['seed_spotify_recommendations']])
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/external/spotify.py", line 82, in get_and_check_seed_recommendations
-    return seed_recommendations_for_result, graph_tracks_list
-  File "/usr/lib/python3.6/bdb.py", line 52, in trace_dispatch
-    return self.dispatch_return(frame, arg)
-  File "/usr/lib/python3.6/bdb.py", line 96, in dispatch_return
-    if self.quitting: raise BdbQuit
-bdb.BdbQuit
-2018-04-29 16:31:58,842 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:54]
-2018-04-29 16:34:15,987 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1560]
-Traceback (most recent call last):
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
-    raise value
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
-    return obj(*a, **k)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 101, in get_k_similar
-    result['seed_spotify_recommendations'], result['items'] = get_and_check_seed_recommendations(track_spotify_id, result['items'])
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/external/spotify.py", line 47, in get_and_check_seed_recommendations
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/external/spotify.py", line 47, in get_and_check_seed_recommendations
-  File "/usr/lib/python3.6/bdb.py", line 48, in trace_dispatch
-    return self.dispatch_line(frame)
-  File "/usr/lib/python3.6/bdb.py", line 67, in dispatch_line
-    if self.quitting: raise BdbQuit
-bdb.BdbQuit
-2018-04-29 16:34:48,811 INFO: Similar endpoint requested from ip 127.0.0.1 [in routes.routes.py:54]
-2018-05-01 14:09:19,089 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1753]
+2018-05-01 14:14:07,401 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1753]
 Traceback (most recent call last):
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 2284, in wsgi_app
     response = self.full_dispatch_request()
@@ -93,8 +16,91 @@ Traceback (most recent call last):
     return obj(*a, **k)
   File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 106, in get_k_similar
     k_neighbors_result = query_model(seed_track)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/k_neighbors.py", line 106, in query_model
-    tracks_ids = [k_neigbors_model_metadata[index] for index in ind]
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/k_neighbors.py", line 106, in <listcomp>
-    tracks_ids = [k_neigbors_model_metadata[index] for index in ind]
-TypeError: only integer scalar arrays can be converted to a scalar index
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/k_neighbors.py", line 121, in query_model
+    if not (seed_track.get_genres_set & track.get_genres_set()):
+TypeError: unsupported operand type(s) for &: 'method' and 'set'
+2018-05-01 14:48:30,572 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1753]
+Traceback (most recent call last):
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.ProgrammingError: operator does not exist: character varying = integer
+LINE 3: WHERE tracks.spotify_id = 2554 
+                                ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 2284, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1807, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1710, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1805, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1791, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
+    return obj(*a, **k)
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 107, in get_k_similar
+    result['items'] = boost_from_k_neigbors(k_neighbors_result, result['items'])
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/k_neighbors.py", line 143, in boost_from_k_neigbors
+    track = db.session.query(Track).filter(Track.spotify_id == rec['id']).first()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2825, in first
+    ret = list(self[0:1])
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2617, in __getitem__
+    return list(res)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.ProgrammingError) operator does not exist: character varying = integer
+LINE 3: WHERE tracks.spotify_id = 2554 
+                                ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+ [SQL: 'SELECT tracks.id AS tracks_id, tracks.spotify_id AS tracks_spotify_id, tracks.musicbrainz_id AS tracks_musicbrainz_id, tracks.artist AS tracks_artist, tracks.name AS tracks_name, tracks.preview_url AS tracks_preview_url, tracks.lastfm_tags AS tracks_lastfm_tags, tracks.spotify_artist_genres AS tracks_spotify_artist_genres \nFROM tracks \nWHERE tracks.spotify_id = %(spotify_id_1)s \n LIMIT %(param_1)s'] [parameters: {'spotify_id_1': 2554, 'param_1': 1}] (Background on this error at: http://sqlalche.me/e/f405)
+2018-05-01 14:49:03,796 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1753]
+Traceback (most recent call last):
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 2284, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1807, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1710, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1805, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1791, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
+    return obj(*a, **k)
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 107, in get_k_similar
+    result['items'] = boost_from_k_neigbors(k_neighbors_result, result['items'])
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/k_neighbors.py", line 143, in boost_from_k_neigbors
+    track = db.session.query(Track).filter(Track.spotify_id == k_neighbors['spotify_id']).first()
+TypeError: list indices must be integers or slices, not str

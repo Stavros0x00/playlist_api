@@ -83,7 +83,7 @@ def get_k_similar():
 
     # Nodes-tracks to use to returned playlist. With the seed track
     nodes_to_playlist = [track_spotify_id]
-    nodes_to_playlist = nodes_to_playlist.extend(list(nodes))
+    nodes_to_playlist.extend(list(nodes))
     result = {'seed_info': seed_info, 'items': []}
 
     # Populate similar tracks info in response
