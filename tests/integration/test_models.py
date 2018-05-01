@@ -31,3 +31,13 @@ def test_track_get_neighbors(app, spotify_id, expected_neighbor_1, expected_neig
     neighbors = track.get_neighbors()
     assert neighbors[0].spotify_id == expected_neighbor_1
     assert neighbors[1].spotify_id == expected_neighbor_2
+
+
+@pytest.mark.parametrize('spotify_id, expected_type, expected_genre', [
+    ('6QgjcU0zLnzq5OrUoSZ3OK', set, 'modern rock'),
+])
+def test_track_get_genres_set(app, spotify_id, expected_type, expected_genre):
+    track = db.session.query(Track).filter(Track.spotify_id == spotify_id).first()
+    genres = track.get_genres_set()
+    assert isinstance(genres, expected_type)
+    assert expected_genre in genres

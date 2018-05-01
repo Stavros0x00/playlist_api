@@ -1,4 +1,4 @@
-from api.external.spotify import get_and_check_seed_recommendations
+from api.external.spotify import get_and_check_seed_recommendations, get_track_genres
 
 urn = 'spotify:artist:3jOstUTkEu2JkjvRdBA5Gu'
 
@@ -26,3 +26,12 @@ def test_get_and_check_seed_recommendations():
     assert isinstance(spotify_seed, list)
     assert isinstance(graph_tracks, list)
     assert isinstance(graph_tracks[0], dict)
+
+
+def test_get_track_genres():
+    spotify_id = '6qG8MsR8UlrJi1935ovoAr'
+
+    genres = get_track_genres(spotify_id)
+
+    assert isinstance(genres, list)
+    assert 'black thrash' in genres  # This could change. Leave it for now

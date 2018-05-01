@@ -13,11 +13,13 @@ from spotipy import SpotifyException
 
 from api import db, create_app
 from api.external.lastfm import network as lastfm_obj
-from api.external.spotify import get_spotify_object
+from api.external.spotify import get_spotify_object, get_track_genres
+from api.k_neighbors import build_model
 from api.models import Track, Playlist, PlaylistToTrack, TrackFeatures
 from run import app
 
 sp = get_spotify_object()
+
 
 def get_featured_playlists():
     """
@@ -158,6 +160,7 @@ def update_tracks_from_playlist(playlist):
             t.name = track['track']['name']
             t.artist = artists
             t.preview_url = track['track']['preview_url']
+            t.spotify_artist_genres = get_track_genres(spotify_id)
 
             try:
                 t.lastfm_tags = [tag.item.name for tag in lastfm_obj.get_track(track['track']['artists'][0]['name'],
@@ -218,3 +221,4 @@ if __name__ == '__main__':
     with app.app_context():
         db.init_app(app)
         update_spotify_playlists()
+        build_model()

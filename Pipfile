@@ -36,6 +36,9 @@ pygraphviz = "*"
 pylast = "*"
 alabaster = "*"
 flask-mail = "*"
+scikit-learn = "*"
+numpy = "*"
+scipy = "*"
 
 
 [requires]

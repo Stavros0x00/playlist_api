@@ -10,6 +10,7 @@ from api import bp, limiter, db, sentry
 from api.graph import get_shortest_neigbors
 from api.errors import bad_request
 from api.external.spotify import get_spotify_object, get_and_check_seed_recommendations
+from api.k_neighbors import query_model, boost_from_k_neigbors
 from api.models import Track
 from api.utils import wants_json_response, send_email
 
@@ -100,6 +101,12 @@ def get_k_similar():
         # the spotify recommendations are added to the spotify created playlist
         result['seed_spotify_recommendations'], result['items'] = get_and_check_seed_recommendations(track_spotify_id, result['items'])
         nodes_to_playlist.extend([rec['spotify_id'] for rec in result['seed_spotify_recommendations']])
+    # Make both args available? Only one for now
+    elif 'with_k_neighbors' in request.args:
+        k_neighbors_result = query_model(seed_track, k=20)
+        result['items'] = boost_from_k_neigbors(k_neighbors_result, result['items'])
+        result['k_neighbors_recommendations'] = k_neighbors_result
+        nodes_to_playlist.extend([rec['spotify_id'] for rec in result['k_neighbors_recommendations']])
 
     try:
         sp = get_spotify_object(with_oauth=True)

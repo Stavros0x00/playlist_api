@@ -112,6 +112,7 @@ make.bat
 
 # Pickled files
 *.gpickle
+*.pickle
 
 # pytest
 .pytest_cache/

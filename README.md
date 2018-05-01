@@ -113,7 +113,6 @@
     mkdir /home/playlistapi/playlist_api/api/pickled_files/
     python scripts/crawl_playlists.py
     python scripts/sync_db_elastic.py
-    python scripts/track_features.py
 
     # Config uwsgi
     touch playlist_api.sock

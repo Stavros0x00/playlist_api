@@ -18,6 +18,9 @@ class Config(object):
     UNDIRECTED_GRAPH_LOCATION = 'api/pickled_files/undirected_graph.gpickle'
     DIRECTED_GRAPH_LOCATION = 'api/pickled_files/stochastic_graph.gpickle'
 
+    K_NEIGHBORS_MODEL_LOCATION = 'api/pickled_files/k_neighbors.pickle'
+    K_NEIGHBORS_MODEL_LOCATION_METADATA = 'api/pickled_files/k_neighbors_metadata.pickle'
+
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 465
     MAIL_USE_SSL = True
@@ -58,6 +61,11 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
+
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL')
+
     UNDIRECTED_GRAPH_LOCATION = 'api/pickled_files/test_undirected_graph.gpickle'
     DIRECTED_GRAPH_LOCATION = 'api/pickled_files/test_stochastic_graph.gpickle'
+
+    K_NEIGHBORS_MODEL_LOCATION = 'api/pickled_files/test_k_neighbors.pickle'
+    K_NEIGHBORS_MODEL_LOCATION_METADATA = 'api/pickled_files/test_k_neighbors_metadata.pickle'

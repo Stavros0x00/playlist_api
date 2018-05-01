@@ -78,3 +78,21 @@ def get_and_check_seed_recommendations(spotify_id, graph_tracks):
         graph_tracks_list = graph_tracks
 
     return seed_recommendations_for_result, graph_tracks_list
+
+
+def get_track_genres(spotify_id):
+    """Gets track genres for a track.
+    Spotify gives genres, if available, for artists.
+    Stores them as lower case in the db tracks table
+    """
+    sp = get_spotify_object()
+
+    spotify_track = sp.track(spotify_id)
+
+    # For every artist get genres
+    spotify_artists = sp.artists([artist['id'] for artist in spotify_track['artists']])
+
+    track_artist_genres = [genre.lower() for artist in spotify_artists['artists']
+                           for genre in artist['genres']]
+
+    return track_artist_genres

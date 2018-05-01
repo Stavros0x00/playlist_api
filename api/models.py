@@ -81,6 +81,7 @@ class Track(db.Model, SearchableMixin):
     name = db.Column(db.String(300), index=True, nullable=False)
     preview_url = db.Column(db.String(600), index=True)
     lastfm_tags = db.Column(ARRAY(String))
+    spotify_artist_genres = db.Column(ARRAY(String))
 
     playlists = db.relationship("PlaylistToTrack", back_populates="track")
 
@@ -113,6 +114,16 @@ class Track(db.Model, SearchableMixin):
             for neighbor in neighbors_in_the_playlist:
                 neighbors.append(neighbor.track)
         return neighbors
+
+    def get_genres_set(self):
+        """Get a set with genres from track spotify artists genres and last.fm tags"""
+        genres_set = set()
+        if self.spotify_artist_genres:
+            genres_set = genres_set | set(self.spotify_artist_genres)
+        if self.lastfm_tags:
+            genres_set = genres_set | set(tag.lower() for tag in self.lastfm_tags)
+
+        return genres_set
 
     def __repr__(self):
         return '<Song {} - {} - {}>'.format(self.spotify_id, self.artist, self.name)
@@ -183,4 +194,4 @@ class TrackFeatures(db.Model):
 
 
     def __repr__(self):
-        return '<TrackFeatures {}, {}>'.format(self.spotify_id, self.track_id)
+        return '<TrackFeatures {}>'.format(self.track_id)

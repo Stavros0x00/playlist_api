@@ -221,6 +221,10 @@ Welcome to Playlist Api's documentation!
 
           1) Boosts score of possible common tracks from the graph suggestions
           2) Returns seed_spotify_recommendations items that we have in the database with a max of 20 tracks found.
+   :query with_k_neighbors: If with_k_neighbors arg specified, the api queries the k_neighbors model created from spotify track features:
+
+          1) Boosts score of possible common tracks from the graph suggestions
+          2) Returns k_neighbors_recommendations items that we have in the database with a max of 20 tracks found.
    :reqheader Accept: application/json
    :resheader Content-Type: application/json
    :statuscode 200: no error
