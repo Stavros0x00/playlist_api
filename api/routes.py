@@ -72,8 +72,6 @@ def get_k_similar():
 
     # Get k nearest nodes
     nodes = get_shortest_neigbors(track_spotify_id)
-    # Nodes-tracks to use to returned playlist. With the seed track
-    nodes_to_playlist = list(nodes)
 
     # Remove the seed track node from the returned nearest node
     del nodes[track_spotify_id]
@@ -83,6 +81,8 @@ def get_k_similar():
     for key in to_remove:
         del nodes[key]
 
+    # Nodes-tracks to use to returned playlist. With the seed track
+    nodes_to_playlist = list(nodes)
     result = {'seed_info': seed_info, 'items': []}
 
     # Populate similar tracks info in response
