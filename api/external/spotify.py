@@ -2,10 +2,12 @@
 import os
 
 import spotipy
+from spotipy import SpotifyException
 from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
 
-from api import db
+from api import db, sentry
 from api.models import Track
+from api.utils import send_email
 
 
 def get_spotify_oauth():
@@ -96,3 +98,23 @@ def get_track_genres(spotify_id):
                            for genre in artist['genres']]
 
     return track_artist_genres
+
+
+def create_spotify_playlist(spotify_ids, seed_track):
+    """Gets a list of spotify_ids, a seed_track and creates a playlist on spotify with the name of the seed_track.
+    Needs user based auth. Returns the metadata of the playlist needed for example for populating the
+    appropriate endpoint json response."""
+    try:
+        sp = get_spotify_object(with_oauth=True)
+        playlist = sp.user_playlist_create(user=os.environ.get('SPOTIFY_USERNAME'), name=seed_track.name)
+
+        # Add tracks to playlist
+        sp.user_playlist_add_tracks(user=os.environ.get('SPOTIFY_USERNAME'), playlist_id=playlist['id'], tracks=spotify_ids)
+        # Add link and id to result
+        return {'spotify_id': playlist['id'],
+                'url': playlist['external_urls']['spotify']}
+    except SpotifyException:
+        # send email and log in sentry if spotify exception
+        sentry.captureException()
+        send_email(os.environ.get('NOTIFICATIONS_EMAIL'),
+                   'Possible spotify refresh token invalidation. Check errors and sentry')

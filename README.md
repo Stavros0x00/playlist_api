@@ -106,6 +106,8 @@
     * LAST_FM_SHARED_SECRET=
     * MAIL_USERNAME=
     * MAIL_PASSWORD=
+    * NOTIFICATIONS_EMAIL=
+    * SENDER_EMAIL=
 
     # Run the virtual enviroment. And populate the database creating the schema and running the necessary scripts.
     pipenv shell

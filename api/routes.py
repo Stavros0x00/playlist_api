@@ -4,12 +4,11 @@ logger = logging.getLogger('api')
 import os
 
 from flask import jsonify, request
-from spotipy import SpotifyException
 
 from api import bp, limiter, db, sentry
 from api.graph import get_shortest_neigbors
 from api.errors import bad_request
-from api.external.spotify import get_spotify_object, get_and_check_seed_recommendations
+from api.external.spotify import get_spotify_object, get_and_check_seed_recommendations, create_spotify_playlist
 from api.k_neighbors import query_model, boost_from_k_neigbors
 from api.models import Track
 from api.utils import wants_json_response, send_email
@@ -109,19 +108,9 @@ def get_k_similar():
         result['k_neighbors_recommendations'] = k_neighbors_result
         nodes_to_playlist.extend([rec['spotify_id'] for rec in result['k_neighbors_recommendations']])
 
-    try:
-        sp = get_spotify_object(with_oauth=True)
-        playlist = sp.user_playlist_create(user=os.environ.get('SPOTIFY_USERNAME'), name=seed_track.name)
-
-        # Add tracks to playlist
-        sp.user_playlist_add_tracks(user=os.environ.get('SPOTIFY_USERNAME'), playlist_id=playlist['id'], tracks=nodes_to_playlist)
-        # Add link and id to result
-        result['playlist'] = {'spotify_id': playlist['id'],
-                              'url': playlist['external_urls']['spotify']}
-    except SpotifyException:
-        # send email and log in sentry if spotify exception
-        sentry.captureException()
-        send_email('santoniou.com@gmail.com',
-                   'Possible spotify refresh token invalidation. Check errors and sentry')
+    # Create a playlist on spotify and add metadata of the created playlist to the result
+    created_playlist_metadata = create_spotify_playlist(nodes_to_playlist, seed_track)
+    if created_playlist_metadata:
+        result['playlist'] = created_playlist_metadata
 
     return jsonify(result)

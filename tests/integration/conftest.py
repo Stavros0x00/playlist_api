@@ -29,6 +29,14 @@ def spotify_object():
 
 
 @pytest.fixture(scope='module')
+def spotify_user_auth_object():
+    """
+    Setups the Spotify object with user based auth.
+    """
+    return get_spotify_object(with_oauth=True)
+
+
+@pytest.fixture(scope='module')
 def lastfm_object():
     """
     Setups the Last.fm object.
