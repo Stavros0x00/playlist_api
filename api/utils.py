@@ -16,6 +16,7 @@ def wants_json_response():
 def send_email(to, message):
     msg = Message('Log-email-posible-error', sender=os.environ.get('NOTIFICATIONS_EMAIL'), recipients=[to])
     msg.body = message
+
     mail.send(msg)
 
 

@@ -12,7 +12,6 @@ from api.utils import chunks
 sp = get_spotify_object()
 
 
-# TODO: See if you can make it faster
 def get_tracks_genres():
     """Gets track genres for all tracks in the db from spotify.
     Spotify gives genres, if available, for artists.

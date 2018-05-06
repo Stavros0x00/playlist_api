@@ -5,13 +5,13 @@ import os
 
 from flask import jsonify, request
 
-from api import bp, limiter, db, sentry
+from api import bp, limiter, db
 from api.graph import get_shortest_neigbors
 from api.errors import bad_request
-from api.external.spotify import get_spotify_object, get_and_check_seed_recommendations, create_spotify_playlist
+from api.external.spotify import get_and_check_seed_recommendations, create_spotify_playlist
 from api.k_neighbors import query_model, boost_from_k_neigbors
 from api.models import Track
-from api.utils import wants_json_response, send_email
+from api.utils import wants_json_response
 
 
 @bp.route('/api/v1/search/tracks/', methods=['GET'])

@@ -17,9 +17,8 @@ from api.models import Track
 ])
 def test_track_to_dict(app, spotify_id, expected_key):
     track = db.session.query(Track).filter(Track.spotify_id == spotify_id).first()
-
     track_info = track.to_dict()
-    print(track_info)
+
     assert expected_key in track_info
 
 
@@ -29,6 +28,7 @@ def test_track_to_dict(app, spotify_id, expected_key):
 def test_track_get_neighbors(app, spotify_id, expected_neighbor_1, expected_neighbor_2):
     track = db.session.query(Track).filter(Track.spotify_id == spotify_id).first()
     neighbors = track.get_neighbors()
+
     assert neighbors[0].spotify_id == expected_neighbor_1
     assert neighbors[1].spotify_id == expected_neighbor_2
 
@@ -39,5 +39,6 @@ def test_track_get_neighbors(app, spotify_id, expected_neighbor_1, expected_neig
 def test_track_get_genres_set(app, spotify_id, expected_type, expected_genre):
     track = db.session.query(Track).filter(Track.spotify_id == spotify_id).first()
     genres = track.get_genres_set()
+
     assert isinstance(genres, expected_type)
     assert expected_genre in genres

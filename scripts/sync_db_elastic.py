@@ -4,7 +4,7 @@
 import logging
 logger = logging.getLogger('api')
 
-# This is needed for running the scripts without a scheduler
+# This is needed for running the scripts from the terminal (without a scheduler)
 import sys
 sys.path.append('/home/playlistapi/playlist_api/')
 

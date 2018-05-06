@@ -6,7 +6,7 @@ import os
 import pytest
 from api import create_app, db
 from config import TestingConfig
-from api.external import AcousticBrainz
+from api.external.acousticbrainz import AcousticBrainz
 from api.external.spotify import get_spotify_object
 from api.external.lastfm import network
 from api.models import Playlist, PlaylistToTrack, Track, TrackFeatures

@@ -19,7 +19,7 @@ db = SQLAlchemy()
 # Used for database migrations
 migrate = Migrate()
 # Extension used for rate limiting
-limiter = Limiter(key_func=get_remote_address)
+limiter = Limiter()
 # Extension used for running background jobs
 scheduler = APScheduler()
 # Exploit flask framework blueprint architecture-design

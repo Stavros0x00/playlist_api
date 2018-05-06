@@ -15,6 +15,7 @@ ExpectedForTrackSearch = namedtuple('ExpectedForTrackSearch', ['type', 'field', 
 def test_song_search(client, query, num_of_results, expected):  # The client object comes from pytest-flask fixtures
     result = client.get(url_for('api.tracks', q=query, n=num_of_results))
     json_payload = result.json
+
     assert isinstance(json_payload, expected.type)
     assert expected.field in json_payload
     assert isinstance(json_payload[expected.field], expected.field_type)
@@ -31,6 +32,7 @@ def test_similar_search(client, spotify_id, num_of_results, expected):
     """This tests only the first parts of the function for now. Needs refactoring for better coverage"""
     result = client.get(url_for('api.get_k_similar', spotify_id=spotify_id, n=num_of_results))
     json_payload = result.json
+
     assert isinstance(json_payload, expected.type)
     assert expected.items_field in json_payload
     assert expected.seed_info_field in json_payload

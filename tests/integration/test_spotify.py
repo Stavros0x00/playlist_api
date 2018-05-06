@@ -1,10 +1,10 @@
 from api.external.spotify import get_and_check_seed_recommendations, get_track_genres
 
-urn = 'spotify:artist:3jOstUTkEu2JkjvRdBA5Gu'
-
 
 def test_spotify_connection(spotify_object):
+    urn = 'spotify:artist:3jOstUTkEu2JkjvRdBA5Gu'
     artist = spotify_object.artist(urn)
+
     assert artist['name'] == 'Weezer'
 
 

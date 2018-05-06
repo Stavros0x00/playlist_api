@@ -1,4 +1,4 @@
-2018-05-01 14:14:07,401 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1753]
+2018-05-01 18:28:05,826 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1753]
 Traceback (most recent call last):
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 2284, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,24 +14,57 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
     return obj(*a, **k)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 106, in get_k_similar
-    k_neighbors_result = query_model(seed_track)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/k_neighbors.py", line 121, in query_model
-    if not (seed_track.get_genres_set & track.get_genres_set()):
-TypeError: unsupported operand type(s) for &: 'method' and 'set'
-2018-05-01 14:48:30,572 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1753]
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 117, in get_k_similar
+    sp.user_playlist_add_tracks(user=os.environ.get('SPOTIFY_USERNAME'), playlist_id=playlist['id'], tracks=nodes_to_playlist)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 455, in user_playlist_add_tracks
+    ftracks = [self._get_uri('track', tid) for tid in tracks]
+TypeError: 'NoneType' object is not iterable
+2018-05-01 18:29:55,543 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1753]
 Traceback (most recent call last):
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
-    context)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
-    cursor.execute(statement, parameters)
-psycopg2.ProgrammingError: operator does not exist: character varying = integer
-LINE 3: WHERE tracks.spotify_id = 2554 
-                                ^
-HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 2284, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1805, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1710, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1805, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1791, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
+    return obj(*a, **k)
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 88, in get_k_similar
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 88, in get_k_similar
+  File "/usr/lib/python3.6/bdb.py", line 48, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/usr/lib/python3.6/bdb.py", line 67, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+2018-05-06 14:05:12,514 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1753]
+Traceback (most recent call last):
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 119, in _internal_call
+    r.raise_for_status()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/requests/models.py", line 935, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://api.spotify.com/v1/users/6faqhxu4ww7isy9sr96j3o116/playlists
 
+During handling of the above exception, another exception occurred:
 
-The above exception was the direct cause of the following exception:
+Traceback (most recent call last):
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/external/spotify.py", line 109, in create_spotify_playlist
+    playlist = sp.user_playlist_create(user=os.environ.get('SPOTIFY_USERNAME'), name=seed_track.name)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 406, in user_playlist_create
+    return self._post("users/%s/playlists" % (user,), payload=data)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 178, in _post
+    return self._internal_call('POST', url, payload, kwargs)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/spotipy/client.py", line 124, in _internal_call
+    headers=r.headers)
+spotipy.client.SpotifyException: http status: 403, code:-1 - https://api.spotify.com/v1/users/6faqhxu4ww7isy9sr96j3o116/playlists:
+ This request requires user authentication.
+
+During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 2284, in wsgi_app
@@ -48,59 +81,22 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
     return obj(*a, **k)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 107, in get_k_similar
-    result['items'] = boost_from_k_neigbors(k_neighbors_result, result['items'])
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/k_neighbors.py", line 143, in boost_from_k_neigbors
-    track = db.session.query(Track).filter(Track.spotify_id == rec['id']).first()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2825, in first
-    ret = list(self[0:1])
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2617, in __getitem__
-    return list(res)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
-    return self._execute_and_instances(context)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
-    return meth(self, multiparams, params)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
-    compiled_sql, distilled_params
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
-    context)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
-    exc_info
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
-    reraise(type(exception), exception, tb=exc_tb, cause=cause)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
-    raise value.with_traceback(tb)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
-    context)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.ProgrammingError: (psycopg2.ProgrammingError) operator does not exist: character varying = integer
-LINE 3: WHERE tracks.spotify_id = 2554 
-                                ^
-HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
- [SQL: 'SELECT tracks.id AS tracks_id, tracks.spotify_id AS tracks_spotify_id, tracks.musicbrainz_id AS tracks_musicbrainz_id, tracks.artist AS tracks_artist, tracks.name AS tracks_name, tracks.preview_url AS tracks_preview_url, tracks.lastfm_tags AS tracks_lastfm_tags, tracks.spotify_artist_genres AS tracks_spotify_artist_genres \nFROM tracks \nWHERE tracks.spotify_id = %(spotify_id_1)s \n LIMIT %(param_1)s'] [parameters: {'spotify_id_1': 2554, 'param_1': 1}] (Background on this error at: http://sqlalche.me/e/f405)
-2018-05-01 14:49:03,796 ERROR: Exception on /api/v1/similar/ [GET] [in app.app.py:1753]
-Traceback (most recent call last):
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 2284, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1807, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1710, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
-    raise value
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1805, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask/app.py", line 1791, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_limiter/extension.py", line 544, in __inner
-    return obj(*a, **k)
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 107, in get_k_similar
-    result['items'] = boost_from_k_neigbors(k_neighbors_result, result['items'])
-  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/k_neighbors.py", line 143, in boost_from_k_neigbors
-    track = db.session.query(Track).filter(Track.spotify_id == k_neighbors['spotify_id']).first()
-TypeError: list indices must be integers or slices, not str
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/routes.py", line 112, in get_k_similar
+    created_playlist_metadata = create_spotify_playlist(nodes_to_playlist, seed_track)
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/external/spotify.py", line 120, in create_spotify_playlist
+    'Possible spotify refresh token invalidation. Check errors and sentry')
+  File "/home/work/Dropbox/eap/diplomatikh/source/playlist_api/api/utils.py", line 17, in send_email
+    mail.send(msg)
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/home/work/.local/share/virtualenvs/playlist_api-P1u_yyx0/lib/python3.6/site-packages/flask_mail.py", line 165, in configure_host
+    host.login(self.mail.username, self.mail.password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials o12-v6sm21395822wri.78 - gsmtp')
