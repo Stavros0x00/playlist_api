@@ -13,14 +13,14 @@ def add_to_index(index, model):
         payload[field] = getattr(model, field)
 
     # Index the payload
-    current_app.elasticsearch.index(index=index, doc_type=index, id=model.id, body=payload)
+    return current_app.elasticsearch.index(index=index, doc_type=index, id=model.id, body=payload)
 
 
 def remove_from_index(index, model):
     if not current_app.elasticsearch:
         return
 
-    current_app.elasticsearch.delete(index=index, doc_type=index, id=model.id)
+    return current_app.elasticsearch.delete(index=index, doc_type=index, id=model.id)
 
 
 def query_index(index, query, page, per_page):

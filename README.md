@@ -84,7 +84,7 @@
     # Install python 3.6 and related packages:
     sudo add-apt-repository ppa:jonathonf/python-3.6
     sudo apt-get update
-    sudo apt-get install build-essential python3-dev python3.6 python3.6-dev python3-setuptools python-dev graphviz libgraphviz-dev pkg-config python-pygraphviz
+    sudo apt-get install build-essential python3-dev python3.6 python3.6-dev python3-setuptools python-dev graphviz libgraphviz-dev pkg-config python-pygraphviz python3-distutils
 
     #  Install pipenv and needed python packages for the project
     sudo apt-get install python3-pip

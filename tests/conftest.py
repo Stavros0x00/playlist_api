@@ -58,6 +58,9 @@ def app(request):
 
     setup_db_rows(db)
 
+    if not app.elasticsearch.indices.exists('test_tracks'):
+        app.elasticsearch.indices.create(index='test_tracks')
+
     def teardown():
         db.session.remove()
         db.drop_all()
@@ -65,6 +68,8 @@ def app(request):
         os.remove(app.config['DIRECTED_GRAPH_LOCATION'])
         os.remove(app.config['K_NEIGHBORS_MODEL_LOCATION'])
         os.remove(app.config['K_NEIGHBORS_MODEL_LOCATION_METADATA'])
+        if app.elasticsearch.indices.exists('test_tracks'):
+            app.elasticsearch.indices.delete(index='test_tracks', ignore=[400, 404])
         app_context.pop()
 
     request.addfinalizer(teardown)
