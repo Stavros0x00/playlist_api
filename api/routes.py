@@ -45,7 +45,7 @@ def tracks():
 
 
 @bp.route('/api/v1/similar/', methods=['GET'])
-@limiter.limit("1 per second")  # Rate limits are restarting with server restart
+@limiter.limit("5 per minute")  # Rate limits are restarting with server restart
 def get_k_similar():
     """
     With a spotify_id return similar tracks with the help of the api's graph algorithms.
