@@ -92,7 +92,7 @@ def get_k_similar():
             continue
         else:
             track_info = track.to_dict()
-            track_info.update({'score': 1 / nodes[spotify_id]})
+            track_info.update({'score': (1 / nodes[spotify_id]) if nodes[spotify_id] else nodes[spotify_id]})
             result['items'].append(track_info)
 
     if 'with_spotify_seed' in request.args:

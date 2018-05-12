@@ -1,5 +1,5 @@
 # Pytest configuration file for this directory. Creates acousticbrainz, spotify, lastfm and the whole app (api) flask object
-# objects used in the tests. Also creates sample rows and relationships in db to use as dummy data.
+# objects used in the tests. Also creates sample rows and relationships in db and elasticsearch index to use as dummy data.
 
 import os
 
@@ -56,20 +56,26 @@ def app(request):
     app_context.push()
     db.create_all()
 
+    # Set up test database
     setup_db_rows(db)
 
+    # Set up test elasticsearch index
     if not app.elasticsearch.indices.exists('test_tracks'):
         app.elasticsearch.indices.create(index='test_tracks')
 
+    # Teardown test pickled files, test database, test elasticsearch
     def teardown():
         db.session.remove()
         db.drop_all()
+
         os.remove(app.config['UNDIRECTED_GRAPH_LOCATION'])
         os.remove(app.config['DIRECTED_GRAPH_LOCATION'])
         os.remove(app.config['K_NEIGHBORS_MODEL_LOCATION'])
         os.remove(app.config['K_NEIGHBORS_MODEL_LOCATION_METADATA'])
+
         if app.elasticsearch.indices.exists('test_tracks'):
             app.elasticsearch.indices.delete(index='test_tracks', ignore=[400, 404])
+
         app_context.pop()
 
     request.addfinalizer(teardown)
@@ -81,18 +87,21 @@ def setup_db_rows(db):
     """
     Setups some rows in the db tables, to use them in all the tests
     """
+    # Add tracks
     track1 = Track(spotify_id='07HF5tFmwh6ahN93JC6LmE',
                    artist='Kyuss',
                    name='Space Cadet',
                    spotify_artist_genres=['modern rock', 'neo-psychedelic'])  # Here the genres are just an example
     db.session.add(track1)
     db.session.commit()
+
     track2 = Track(spotify_id='6QgjcU0zLnzq5OrUoSZ3OK',
                    artist='Portugal. The Man',
                    name='Feel It Still',
                    spotify_artist_genres=['modern rock', 'neo-psychedelic'])
     db.session.add(track2)
     db.session.commit()
+
     track3 = Track(spotify_id='1i8oOEZKBzaxnEmcZYAYCQ',
                    artist='Frenic',
                    name='Travel Alone',
@@ -100,10 +109,13 @@ def setup_db_rows(db):
     db.session.add(track3)
     db.session.commit()
 
+    # Add playlists
     playlist = Playlist(spotify_id='testrandom123',
                         playlist_user='testrandomuser')
     db.session.add(playlist)
 
+    # Add track features. For now it takes the original features from spotify
+    # Manipulate time signature for avoiding division by zero in such a small sample
     sp = get_spotify_object()
     audio_features = sp.audio_features('1i8oOEZKBzaxnEmcZYAYCQ')[0]
     track_features = TrackFeatures(
@@ -123,7 +135,6 @@ def setup_db_rows(db):
         valence=audio_features['valence'],
     )
     db.session.add(track_features)
-
     db.session.commit()
 
     sp = get_spotify_object()
@@ -145,7 +156,6 @@ def setup_db_rows(db):
         valence=audio_features['valence'],
     )
     db.session.add(track_features)
-
     db.session.commit()
 
     sp = get_spotify_object()
@@ -167,9 +177,9 @@ def setup_db_rows(db):
         valence=audio_features['valence'],
     )
     db.session.add(track_features)
-
     db.session.commit()
 
+    # Add track to playlist relationships
     tracks = [track1, track2, track3]
     for index, track in enumerate(tracks):
         playlist_to_track = PlaylistToTrack(order_in_playlist=index)
@@ -177,3 +187,18 @@ def setup_db_rows(db):
         with db.session.no_autoflush:
             playlist.tracks.append(playlist_to_track)
         db.session.commit()
+
+
+@pytest.fixture(scope='session')
+def graph_tracks():
+    """Sample of suggested from graph tracks returned in the similar endpoint.
+    Used across the tests"""
+    graph_tracks = [{'id': 26756, 'artist': 'Kvelertak', 'name': 'Nattesferd', 'spotify_id': '6qG8MsR8UlrJi1935ovoAr',
+                     'preview_url': 'https://p.scdn.co/mp3-preview/7239f74e280a36ff70f7e2ef13dd6970831d6827?cid=0c0bb28de56d49d3b925f9755a289113',
+                     'lastfm_tags': ['Black n Roll', 'kvelertak', 'black metal', 'hardcore', 'stoner metal'],
+                     'score': 3.061528206093548},
+                    {'id': 36317, 'artist': 'Burzum', 'name': 'Dunkelheit', 'spotify_id': '5v3TSHYm8BzbON2u6QBEG7',
+                     'preview_url': 'https://p.scdn.co/mp3-preview/7a3ad6a36ce0b47713e287a1838c67ea08f26278?cid=0c0bb28de56d49d3b925f9755a289113',
+                     'lastfm_tags': ['black metal', 'ambient black metal', 'dark ambient', 'Norwegian Black Metal',
+                                     'True Norwegian Black Metal'], 'score': 1.4426950408889634}]
+    return graph_tracks

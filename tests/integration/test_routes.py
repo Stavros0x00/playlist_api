@@ -25,15 +25,20 @@ ExpectedForSimilarSearch = namedtuple('ExpectedForSimilarSearch', ['type', 'item
 
 
 @pytest.mark.parametrize('spotify_id, num_of_results, expected', [
-    ('1lAnPorUcAKhxxUQHlc3GZ', '10', ExpectedForSimilarSearch(dict, 'items', 'seed_info', list)),
-    ('1lAnPorUcAKhxxUQHlc3GZ', '0', ExpectedForSimilarSearch(dict, 'items', 'seed_info', list)),
+    ('07HF5tFmwh6ahN93JC6LmE', '10', ExpectedForSimilarSearch(dict, 'items', 'seed_info', list)),
+    ('6QgjcU0zLnzq5OrUoSZ3OK', '0', ExpectedForSimilarSearch(dict, 'items', 'seed_info', list)),
 ])
 def test_similar_search(client, spotify_id, num_of_results, expected):
-    """This tests only the first parts of the function for now. Needs refactoring for better coverage"""
     result = client.get(url_for('api.get_k_similar', spotify_id=spotify_id, n=num_of_results))
     json_payload = result.json
 
     assert isinstance(json_payload, expected.type)
-    assert expected.items_field in json_payload
+
     assert expected.seed_info_field in json_payload
+    assert 'id' in json_payload[expected.seed_info_field]
+    assert 'spotify_id' in json_payload[expected.seed_info_field]
+    assert 'artist' in json_payload[expected.seed_info_field]
+    assert 'name' in json_payload[expected.seed_info_field]
+
+    assert expected.items_field in json_payload
     assert isinstance(json_payload[expected.items_field], expected.items_field_type)

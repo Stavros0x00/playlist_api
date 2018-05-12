@@ -8,10 +8,6 @@ def test_normalize_columns(app):
     track_features = db.session.query(TrackFeatures).filter(TrackFeatures.track_id == track.id).first()
     MIN_MAX_VALUES = get_min_max_values(TrackFeatures)
 
-    # Temp way to avoid zero division errors with such a small number of tracks
-    MIN_MAX_VALUES['time_signature']['min'] = 0.1
-    MIN_MAX_VALUES['time_signature']['max'] = 0.2
-
     normalized = normalize_columns(track_features, MIN_MAX_VALUES)
 
     assert isinstance(normalized, dict)
@@ -41,17 +37,7 @@ def test_query_model(app):
     assert 'artist' in k_neigbors[0]
 
 
-def test_boost_from_k_neighbors(app):
-    # TODO: Make a better case and refactor the function.
-    graph_tracks = [{'id': 26756, 'artist': 'Kvelertak', 'name': 'Nattesferd', 'spotify_id': '6qG8MsR8UlrJi1935ovoAr',
-                     'preview_url': 'https://p.scdn.co/mp3-preview/7239f74e280a36ff70f7e2ef13dd6970831d6827?cid=0c0bb28de56d49d3b925f9755a289113',
-                     'lastfm_tags': ['Black n Roll', 'kvelertak', 'black metal', 'hardcore', 'stoner metal'],
-                     'score': 3.061528206093548},
-                    {'id': 36317, 'artist': 'Burzum', 'name': 'Dunkelheit', 'spotify_id': '5v3TSHYm8BzbON2u6QBEG7',
-                     'preview_url': 'https://p.scdn.co/mp3-preview/7a3ad6a36ce0b47713e287a1838c67ea08f26278?cid=0c0bb28de56d49d3b925f9755a289113',
-                     'lastfm_tags': ['black metal', 'ambient black metal', 'dark ambient', 'Norwegian Black Metal',
-                                     'True Norwegian Black Metal'], 'score': 1.4426950408889634}]
-
+def test_boost_from_k_neighbors(app, graph_tracks):
     k_neigbors = [{'id': 3, 'artist': 'Frenic', 'name': 'Travel Alone', 'spotify_id': '1i8oOEZKBzaxnEmcZYAYCQ',
                    'preview_url': None, 'lastfm_tags': None}
                   ]
