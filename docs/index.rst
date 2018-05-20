@@ -229,7 +229,7 @@ Welcome to Playlist Api's documentation!
    :resheader Content-Type: application/json
    :statuscode 200: no error
    :statuscode 400: bad request (e.g. wrong request accept type)
-   :statuscode 429: exceeded rate limit of 5 requests per second
+   :statuscode 429: exceeded rate limit of 5 requests per minute
 
 .. Indices and tables
 .. ==================
