@@ -100,14 +100,14 @@
     * TEST_DATABASE_URL=postgresql://postgres:{YOUR POSTGRES PASS}@localhost:5432/test_database
     * ELASTICSEARCH_URI=http://localhost:9200
     * SENTRY_KEY= (optional)
-    * SPOTIPY_CLIENT_ID=
-    * SPOTIPY_CLIENT_SECRET=
-    * LAST_FM_API_KEY=
-    * LAST_FM_SHARED_SECRET=
-    * MAIL_USERNAME=
-    * MAIL_PASSWORD=
-    * NOTIFICATIONS_EMAIL=
-    * SENDER_EMAIL=
+    * SPOTIPY_CLIENT_ID=(https://developer.spotify.com/dashboard/)
+    * SPOTIPY_CLIENT_SECRET=(https://developer.spotify.com/dashboard/)
+    * LAST_FM_API_KEY=(https://www.last.fm/api/authentication)
+    * LAST_FM_SHARED_SECRET=(https://www.last.fm/api/authentication)
+    * MAIL_USERNAME=(optional, for connecting to gmail server)
+    * MAIL_PASSWORD=(optional, for connecting to gmail server)
+    * NOTIFICATIONS_EMAIL=(optional, your email for notifications)
+    * SENDER_EMAIL=(optional, from who to send email)
 
     # Run the virtual enviroment. And populate the database creating the schema and running the necessary scripts.
     pipenv shell
