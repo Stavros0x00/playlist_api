@@ -77,9 +77,9 @@
 
 
 ### Install and Config the Project
-    # Clone the project from git
+    # Clone the project from bitbucket
     cd /home/playlistapi
-    git clone https://github.com/Stavros0x00/playlist_api.git
+    git clone https://stavros0x00@bitbucket.org/stavros0x00/playlist_api.git
 
     # Install python 3.6 and related packages:
     sudo add-apt-repository ppa:jonathonf/python-3.6
