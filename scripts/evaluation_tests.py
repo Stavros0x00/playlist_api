@@ -56,15 +56,23 @@ def music_track_genre_evaluation():
 
         # Continue if a node suggestion doesn't have a genre set
         flagged = False
-        for node in nodes:
-            node_track = db.session.query(Track).filter(Track.spotify_id == node).first()
-            if not node_track and not node_track.get_genres_set():
+        # for node in nodes:
+        #     node_track = db.session.query(Track).filter(Track.spotify_id == node).first()
+        #     if not node_track and not node_track.get_genres_set():
+        #         flagged = True
+
+        node_objects = [db.session.query(Track).filter(Track.spotify_id == node).first() for node in nodes]
+        for node_object in node_objects:
+            if not node_object:
                 flagged = True
+                break
+            if not node_object.get_genres_set():
+                flagged = True
+                break
         if flagged:
             continue
 
-        for node in nodes:
-            node_track = db.session.query(Track).filter(Track.spotify_id == node).first()
+        for node_track in node_objects:
             print('seed spotify id', track.spotify_id)
             print('seed genre set ', track.get_genres_set())
             print('seed last set ', track.lastfm_tags)
