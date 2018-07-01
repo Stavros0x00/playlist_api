@@ -56,11 +56,6 @@ def music_track_genre_evaluation():
 
         # Continue if a node suggestion doesn't have a genre set
         flagged = False
-        # for node in nodes:
-        #     node_track = db.session.query(Track).filter(Track.spotify_id == node).first()
-        #     if not node_track and not node_track.get_genres_set():
-        #         flagged = True
-
         node_objects = [db.session.query(Track).filter(Track.spotify_id == node).first() for node in nodes]
         for node_object in node_objects:
             if not node_object:
@@ -99,7 +94,7 @@ def music_track_genre_evaluation():
             valid_tracks.append(t)
 
     print('percent ', (len(valid_tracks)/counter)*100)
-
+    print(counter)
 
 if __name__ == '__main__':
     # Initialize app needed for using the models
