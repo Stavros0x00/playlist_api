@@ -22,7 +22,7 @@ def music_track_genre_evaluation():
     Sample limit songs with all suggestions having a genre set
     """
     # The sample upper limit
-    SAMPLE_LIMIT = 10 # change it to 1000
+    SAMPLE_LIMIT = 1000
 
     # Limit counter
     counter = 0
